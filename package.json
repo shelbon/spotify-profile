@@ -1,21 +1,13 @@
 {
   "name": "spotify-profile",
-  "description":"A web app for vizualizing  personalized data from spotify  build with svelte,fastify and the spotify api",
   "version": "1.0.0",
   "private": true,
-  "main": "index.js",
+  "description": "A web app for vizualizing personalized data from spotify build with svelte,fastify and the spotify api  ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server/server.js"
+    "dev": "concurrently \"npm run dev --prefix ./client/ \" \"npm run dev --prefix ./server/\"",
+    "app": "npm run dev --prefix ./client/ "
   },
-  "keywords": [
-    "svelte",
-    "adonisjs",
-    "spotify"
-  ],
-  "author": "shelbon",
-  "license": "ISC",
   "dependencies": {
-    "fastify": "^3.15.1"
+    "concurrently": "^6.1.0"
   }
 }
