@@ -4,15 +4,21 @@
 
 <script>
   import Icon from '@iconify/svelte';
+  import { url, isActive } from '@roxi/routify';
   export let name;
   export let icon;
   export let destination;
+  $: console.log(destination);
 </script>
 
 <div class="nav__item">
-  <a class="nav__item__link" on:click href={destination}
+  <a
+    class="nav__item__link"
+    on:click
+    class:selected={$isActive(destination)}
+    href={$url(destination)}
     ><Icon {icon} style="color: #ffffff; font-size: 48px;" hFlip={false} />
-    <span  class="nav__item__text">{name}</span></a
+    <span class="nav__item__text">{name}</span></a
   >
 </div>
 

@@ -5,7 +5,9 @@
   "description": "A web app for vizualizing personalized data from spotify build with svelte,fastify and the spotify api  ",
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix ./client/ \" \"npm run dev --prefix ./server/\"",
-    "app": "npm run dev --prefix ./client/ "
+    "app": "npm run dev --prefix ./client/ ",
+    "build": "npm run build --prefix ./client/",
+    "start": "npm run start --prefix ./client/"
   },
   "dependencies": {
     "concurrently": "^6.1.0"

@@ -1,3 +1,8 @@
+<!-- routify:options name="login" -->
+<!-- routify:options reset=true -->
+<svelte:head>
+  <title>Log in</title>
+</svelte:head>
 <div class="container">
   <a
     class="btn-log-in"

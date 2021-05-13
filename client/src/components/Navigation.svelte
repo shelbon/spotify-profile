@@ -1,9 +1,4 @@
-<script>
-  import NavigationItem from './RouterNavigationItem.svelte';
-  export let visibility;
-</script>
-
-<nav class:visible={visibility}>
+<nav>
   <slot />
 </nav>
 
@@ -19,10 +14,6 @@
       background: #333333;
       justify-content: flex-start;
       align-items: center;
-      visibility: hidden;
     }
-  }
-  .visible{
-    visibility: visible;
   }
 </style>

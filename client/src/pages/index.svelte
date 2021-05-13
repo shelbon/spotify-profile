@@ -1,7 +1,9 @@
 <script>
 </script>
 
-<svelte:head>Profile</svelte:head>
+<svelte:head>
+  <title>Profile</title>
+</svelte:head>
 <div class="profile__container">
   <h1>Profile page</h1>
 </div>

@@ -1,14 +1,24 @@
-import svelte from 'rollup-plugin-svelte';
+import svelte from 'rollup-plugin-svelte-hot';
+import Hmr from 'rollup-plugin-hot';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import esbuild from 'rollup-plugin-esbuild';
 import css from 'rollup-plugin-css-only';
+import { copySync, removeSync } from 'fs-extra';
 import replace from '@rollup/plugin-replace';
 import dotenv from 'dotenv';
 
+const assetsDir = 'assets';
+const distDir = 'public';
+const buildDir = `${distDir}/build`;
 const production = !process.env.ROLLUP_WATCH;
+const isNollup = !!process.env.NOLLUP;
 dotenv.config();
+
+// clear previous builds
+removeSync(distDir);
+removeSync(buildDir);
 function serve() {
   let server;
 
@@ -34,14 +44,15 @@ function serve() {
     },
   };
 }
-
+const copyToDist = () => copySync(assetsDir, distDir);
 export default {
   input: 'src/main.js',
   output: {
     sourcemap: true,
-    format: 'iife',
+    format: 'esm',
     name: 'app',
-    file: 'public/build/bundle.js',
+    dir: 'public/build/',
+    chunkFileNames: `[name]${(production && '-[hash]') || ''}.js`,
   },
   plugins: [
     resolve({
@@ -52,6 +63,8 @@ export default {
       API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
     }),
     svelte({
+      emitCss: false,
+      hot: isNollup,
       compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,
@@ -89,11 +102,8 @@ export default {
         verbose: true,
         wait: 500,
       }),
-
-    // If we're building for production (npm run build
-    // instead of npm run dev), minify
-
-    ,
+    !production && isNollup && Hmr({ inMemory: true, public: 'assets' }),
+    production && copyToDist(),
   ],
   watch: {
     clearScreen: false,
