@@ -6,7 +6,8 @@ import Csrf from 'fastify-csrf';
 import Cors from 'fastify-cors';
 import Env from 'fastify-env';
 import Static from 'fastify-static';
-import SecureSession from 'fastify-secure-session';
+import Session from 'fastify-session';
+import Cookie from 'fastify-cookie';
 export default async function (fastify, opts) {
   // Place here your custom code!
   const envOption = {
@@ -21,7 +22,7 @@ export default async function (fastify, opts) {
         'REDIRECT_URI',
         'CLIENT_SECRET',
         'CLIENT_ID',
-        'COOKIE_SECRET',
+        'SESSION_SECRET',
         'SCOPE',
         'STATE_KEY',
       ],
@@ -39,7 +40,7 @@ export default async function (fastify, opts) {
         CLIENT_SECRET: {
           type: 'string',
         },
-        COOKIE_SECRET: {
+        SESSION_SECRET: {
           type: 'string',
         },
         SCOPE: {
@@ -52,21 +53,25 @@ export default async function (fastify, opts) {
     },
   };
   fastify.register(Env, envOption);
-  fastify.register(SecureSession, {
-    // adapt this to point to the directory where secret-key is located
-    secret: 'averylogphrasebiggerthanthirtytwochars',
-    salt: 'mq9hDxBVDbspDR6n',
-    cookie: {
-      path: '/',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: true,
-    },
+  fastify.register(Cookie);
+  fastify.register(Cors, {
+    credentials: true,
+    origin: ['http://localhost:3000', 'http://localhost:5000'],
   });
-  fastify.register(Cors, { origin: true });
   fastify.register(Csrf, {
     sessionPlugin: 'fastify-cookie',
     cookieOpts: { signed: true },
+  });
+  fastify.register(Session, {
+    // adapt this to point to the directory where secret-key is located
+    secret: 'averylogphrasebiggerthanthirtytwochars',
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 604800, // one week in seconds,
+      sameSite: true,
+      expires: new Date(Date.now() + 604800 * 1000),
+    },
   });
   fastify.register(Static, {
     root: join(import.meta.url, 'public'),

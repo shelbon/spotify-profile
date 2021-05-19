@@ -1,3 +1,4 @@
+import { Duration, Interval } from 'luxon';
 const generateRandomString = function (length) {
   let text = '';
   let possible =
@@ -18,5 +19,32 @@ function cookieStringToJson(cookie) {
   });
   return json;
 }
+/**
+ * determine if token should be refresh
+ * @param integer expires_in  access token expiration time in  milisecond
+ * @param DateTime  currentDate current date and hour
+ * @param DateTime lastFetchDate time since last fetch of access token
+ *
+ */
+function isTimeToRefreshToken(expires_in, currentDate, lastFetchDate) {
+  //date when the token is invalid
+  if (
+    expires_in < 0 ||
+    expires_in === undefined ||
+    expires_in === null ||
+    expires_in === NaN ||
+    currentDate === undefined ||
+    currentDate === null ||
+    lastFetchDate === undefined ||
+    lastFetchDate === null
+  ) {
+    return false;
+  }
+  let duration = Duration.fromMillis(expires_in);
 
-export  {generateRandomString,cookieStringToJson};
+  let interval = Interval.after(lastFetchDate, duration);
+
+  return !interval.contains(currentDate);
+}
+
+export { generateRandomString, cookieStringToJson, isTimeToRefreshToken };

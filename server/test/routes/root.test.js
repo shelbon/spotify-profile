@@ -1,7 +1,7 @@
 'use strict'
 
-const { test } = require('tap')
-const { build } = require('../helper')
+import { test } from 'tap';
+import { build }  from '../helper.js'
 
 test('default root route', async (t) => {
   const app = build(t)
@@ -9,7 +9,7 @@ test('default root route', async (t) => {
   const res = await app.inject({
     url: '/'
   })
-  t.deepEqual(JSON.parse(res.payload), { root: true })
+  t.same(JSON.parse(res.payload), { root: true })
 })
 
 // inject callback style:
