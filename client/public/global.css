@@ -51,8 +51,16 @@
   font-weight: 700;
   font-style: normal;
 }
-* {
+
+*,
+*:after,
+*:before {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
 }
 body {
   font-family: 'Poppins', sans-serif;

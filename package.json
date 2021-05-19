@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run dev --prefix ./client/ \" \"npm run dev --prefix ./server/\"",
     "app": "npm run dev --prefix ./client/ ",
     "build": "npm run build --prefix ./client/",
-    "start": "npm run start --prefix ./client/"
+    "start": "npm run build --prefix ./client/ && npm run serve --prefix ./client/"
   },
   "dependencies": {
     "concurrently": "^6.1.0"

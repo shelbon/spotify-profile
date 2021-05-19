@@ -5,7 +5,7 @@
 <style>
   nav {
     display: flex;
-    flex-grow: 0.2;
+    width: 12vw;
   }
   @media (min-width: 640px) {
     nav {

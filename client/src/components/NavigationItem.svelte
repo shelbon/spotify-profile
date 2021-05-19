@@ -1,7 +1,3 @@
-<script context="module">
-  export let selected;
-</script>
-
 <script>
   import Icon from '@iconify/svelte';
   import { url, isActive } from '@roxi/routify';
@@ -27,9 +23,13 @@
     color: #ffffff;
     text-decoration: none;
   }
+  .nav__item:hover {
+    background-color: #1db954;
+  }
   .selected {
     background-color: #1db954;
   }
+
   @media (min-width: 640px) {
     .nav__item {
       display: flex;

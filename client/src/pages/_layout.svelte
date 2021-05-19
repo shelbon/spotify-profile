@@ -4,56 +4,59 @@
   import SpotifyApi from '../components/Spotify-api.svelte';
   import Navigation from '../components/Navigation.svelte';
   import NavigationItem from '../components/NavigationItem.svelte';
-  import bxsPlaylist from '@iconify/icons-bx/bxs-playlist';
-  import bxMusic from '@iconify/icons-bx/bx-music';
-  import bxsMicrophoneAlt from '@iconify/icons-bx/bxs-microphone-alt';
-  import bxUser from '@iconify/icons-bx/bx-user';
-  import bxLogOut from '@iconify/icons-bx/bx-log-out';
-  let cookieJson = { isLogin: false };
-  $: isLogin = cookieJson.isLogin;
+  import bxsPlaylist from '@iconify-icons/bx/bxs-playlist';
+  import bxMusic from '@iconify-icons/bx/bx-music';
+  import bxsMicrophoneAlt from '@iconify-icons/bx/bxs-microphone-alt';
+  import bxUser from '@iconify-icons/bx/bx-user';
+  import bxLogOut from '@iconify-icons/bx/bx-log-out';
+  import { goto } from '@roxi/routify';
+  let isLogin = () => cookieStringToJson(document.cookie).isLogin;
+  $: isAuthenticated = isLogin() || false;
   $: console.table({
-    isLogin: isLogin,
-    cookie: cookieJson,
+    isAuthenticated: isAuthenticated,
   });
-  onMount(() => {
-    cookieJson = cookieStringToJson(document.cookie);
-  });
+  onMount(() => {});
+
   function handleLogOutClick(e) {
-    isLogin = false;
-    cookieJson = { isLogin: false };
+    e.preventDefault();
+    isAuthenticated = false;
     eraseCookie('isLogin');
+    $goto('./login');
   }
 </script>
-
-<div class="main-container">
-  <SpotifyApi>
-    <svelte:fragment slot="navigation">
-      <Navigation>
-        <NavigationItem name="Profile" destination="./index" icon={bxUser} />
-        <NavigationItem name="Tracks" destination="./tracks" icon={bxMusic} />
-        <NavigationItem
-          name="Playlist"
-          destination="./playlist"
-          icon={bxsPlaylist}
-        />
-        <NavigationItem
-          name="Artists"
-          destination="./top-artists"
-          icon={bxsMicrophoneAlt}
-        />
-        <NavigationItem
-          name="Log out"
-          destination="login"
-          icon={bxLogOut}
-          on:click={handleLogOutClick}
-        />
-      </Navigation>
-    </svelte:fragment>
-    <main slot="content">
-      <slot />
-    </main>
-  </SpotifyApi>
-</div>
+{#if isAuthenticated}
+  <div class="main-container">
+    <SpotifyApi>
+      <svelte:fragment slot="navigation">
+        <Navigation>
+          <NavigationItem name="Profile" destination="./index" icon={bxUser} />
+          <NavigationItem name="Tracks" destination="./tracks" icon={bxMusic} />
+          <NavigationItem
+            name="Playlist"
+            destination="./playlist"
+            icon={bxsPlaylist}
+          />
+          <NavigationItem
+            name="Artists"
+            destination="./top-artists"
+            icon={bxsMicrophoneAlt}
+          />
+          <NavigationItem
+            name="Log out"
+            destination="./login"
+            icon={bxLogOut}
+            on:click={handleLogOutClick}
+          />
+        </Navigation>
+      </svelte:fragment>
+      <main slot="content">
+        <slot />
+      </main>
+    </SpotifyApi>
+  </div>
+{:else}
+  {$goto('/login')}
+{/if}
 
 <style>
   .main-container {
@@ -61,8 +64,9 @@
   }
   main {
     display: flex;
-    text-align: center;
-    height: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     flex: 10;
   }
 
@@ -70,5 +74,8 @@
     main {
       max-width: none;
     }
+  }
+  :global(#routify-app) {
+    height: 100%;
   }
 </style>
