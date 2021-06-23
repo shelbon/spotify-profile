@@ -4,14 +4,26 @@
 
 <style>
   nav {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    flex: 1;
     display: flex;
-    width: 12vw;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    z-index: 100;
+    background-color: var(--nav-color);
+    height: 5.6rem;
+    width: 100vw;
   }
-  @media (min-width: 640px) {
+  /*do something for the height of the  navigation bar */
+  @media (min-width: 900px) {
     nav {
-      height: 1514px;
+      min-height: 100vh;
+      width: 7.2rem;
       flex-flow: column nowrap;
-      background: #333333;
+
       justify-content: flex-start;
       align-items: center;
     }

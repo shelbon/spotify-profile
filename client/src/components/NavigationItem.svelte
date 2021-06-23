@@ -7,50 +7,75 @@
   $: console.log(destination);
 </script>
 
-<div class="nav__item">
-  <a
-    class="nav__item__link"
-    on:click
-    class:selected={$isActive(destination)}
-    href={$url(destination)}
-    ><Icon {icon} style="color: #ffffff; font-size: 48px;" hFlip={false} />
-    <span class="nav__item__text">{name}</span></a
-  >
-</div>
+<a
+  class="nav__item"
+  on:click
+  class:selected={$isActive(destination)}
+  href={$url(destination)}
+  ><Icon {icon} hFlip={false} />
+  <p class="nav__item__text">{name}</p></a
+>
 
 <style>
-  .nav__item :global(.nav__item__link) {
+  .nav__item :global(svg) {
     color: #ffffff;
+    font-size: clamp(2.4rem, 0.8rem + 4.4444vw, 4.8rem);
+    margin: 0.8rem 0 0 0;
+    height: 5.6rem;
+  }
+  .nav__item {
+    display: flex;
+    flex-flow: column;
+    flex-shrink: 1;
     text-decoration: none;
-  }
-  .nav__item:hover {
-    background-color: #1db954;
-  }
-  .selected {
-    background-color: #1db954;
+    line-height: 1;
+    z-index: 100;
+    align-items: center;
+    color: #fafafa;
+    height: 100%;
+    width: 100%;
+    max-width: 16.8rem;
   }
 
-  @media (min-width: 640px) {
+  .nav__item__text {
+    font-size: 1.2rem;
+    transition: font-size 0.8s;
+    align-self: center;
+    margin: 0.3rem 0 1rem 0;
+  }
+
+  .selected :global(svg),
+  .selected .nav__item__text {
+    color: #1db954;
+  }
+
+  @media (min-width: 900px) {
     .nav__item {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 0px;
       color: #ffffff;
-      margin: 0px 0.9375rem 2.0625rem;
-      min-width: 135px;
-      min-height: 48px;
+      width: 7.2rem;
+      height: 7.2rem;
+      margin-bottom: 0.5rem;
     }
-    .nav__item:nth-child(1) {
-      margin: 1.625rem 0.9375rem 2.0625rem;
+    .nav__item:hover,
+    .nav__item:focus,
+    .nav__item:active {
+      border-left: solid #1db954;
     }
-    .nav__item :global(.nav__item__link) {
+    .nav__item {
       display: flex;
     }
-    .nav__item :global(.nav__item__link) :global(.nav__item__text) {
+    .nav__item__text {
+      font-size: 1.8rem;
       align-self: center;
-      margin: 0px 1rem;
+      margin: 0.5rem 0 0 0;
+    }
+    .nav__item :global(svg) {
+      font-size: 4.8rem;
     }
   }
 </style>
