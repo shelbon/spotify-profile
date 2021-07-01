@@ -1,15 +1,41 @@
 {
-  "name": "spotify-profile",
-  "version": "1.0.0",
-  "private": true,
-  "description": "A web app for vizualizing personalized data from spotify build with svelte,fastify and the spotify api  ",
+  "name": "spotify-profile-app",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix ./client/ \" \"npm run dev --prefix ./server/\"",
-    "app": "npm run dev --prefix ./client/ ",
-    "build": "npm run build --prefix ./client/",
-    "start": "npm run build --prefix ./client/ && npm run serve --prefix ./client/"
+    "prepare": "npm run vite-workaround",
+    "vite-workaround": "node _helper/vite-workaround.js",
+    "dev": "run-p dev:*",
+    "dev:routify": "routify",
+    "dev:vite": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "@iconify-icons/bx": "1.1.0",
+    "@iconify/svelte": "^1.0.4",
+    "@originjs/vite-plugin-commonjs": "^1.0.0-beta6",
+    "@roxi/routify": "^2.18.0",
+    "@smui/card": "^4.2.0",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.7",
+    "autoprefixer": "^10.2.5",
+    "npm-run-all": "^4.1.5",
+    "svelte": "^3.37.0",
+    "svelte-loading-spinners": "^0.1.5",
+    "vite": "^2.3.0"
   },
   "dependencies": {
-    "concurrently": "^6.1.0"
+    "@sveltestack/svelte-query": "^1.4.0",
+    "axios": "^0.21.1",
+    "svelte-inline-svg": "^1.0.8"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "postcss": {
+    "map": false,
+    "plugins": {
+      "autoprefixer": true
+    }
   }
 }
