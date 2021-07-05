@@ -32,5 +32,13 @@ function getHashParams() {
   }
   return hashParams;
 }
-
-export { cookieStringToJson, getCookie, eraseCookie, getHashParams };
+function isObject(variable) {
+  return typeof variable === 'object' && variable !== null;
+}
+export {
+  cookieStringToJson,
+  getCookie,
+  eraseCookie,
+  getHashParams,
+  isObject,
+};
