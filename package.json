@@ -21,7 +21,7 @@
     "@originjs/vite-plugin-commonjs": "1.0.0-beta6",
     "@roxi/routify": "2.18.0",
     "@smui/card": "4.2.0",
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.11",
+    "@sveltejs/vite-plugin-svelte": "1.0.0-next.12",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/svelte": "3.0.3",
     "autoprefixer": "10.2.6",
