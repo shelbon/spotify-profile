@@ -66,7 +66,9 @@
             />
             <NavigationItem
               name="Log out"
-              destination={`${import.meta.env.API_BASE_URL}logout`}
+              destination={`${
+                import.meta.env.VITE_API_BASE_URL
+              }logout`}
               icon={bxLogOut}
               on:click={handleLogOutClick}
             />

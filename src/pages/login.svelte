@@ -1,7 +1,7 @@
 <script>
   import InlineSVG from 'svelte-inline-svg';
   function login() {
-    fetch(`${import.meta.env.API_BASE_URL}spotify/login/`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}spotify/login/`)
       .then((response) => response.json())
       .then((data) => {
         if (data) {
@@ -28,7 +28,7 @@
     </h1>
     <a
       class="btn-log-in"
-      href="{import.meta.env.API_BASE_URL}spotify/login/"
+      href="{import.meta.env.VITE_API_BASE_URL}spotify/login/"
       referrerpolicy="origin"><p>Log in to your spotify account</p></a
     >
   </div>
