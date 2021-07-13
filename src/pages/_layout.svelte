@@ -34,7 +34,7 @@
   });
   function handleLogOutClick(e) {
     isAuthenticated = false;
-    eraseCookie('isLogin');
+    localStorage.clear();
   }
 </script>
 
@@ -66,7 +66,9 @@
             />
             <NavigationItem
               name="Log out"
-              destination="./login"
+              destination={`${
+                import.meta.env.VITE_API_BASE_URL
+              }logout`}
               icon={bxLogOut}
               on:click={handleLogOutClick}
             />
