@@ -1,7 +1,7 @@
 <script>
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
 
-  import { getContext, onMount } from 'svelte';
+  import { getContext } from 'svelte';
   import {
     useQuery,
     useQueryClient,
@@ -28,7 +28,6 @@
       initialData: () =>
         queryClient.getQueryData(apiEndpointsNames.userInfo),
       staleTime: 50000,
-      enabled: false,
     },
   );
   const userPlaylistsQuery = useQuery(
@@ -38,7 +37,6 @@
       initialData: () =>
         queryClient.getQueryData(apiEndpointsNames.playlists),
       staleTime: 50000,
-      enabled: false,
     },
   );
   const followedArtistsQuery = useQuery(
@@ -50,7 +48,6 @@
           apiEndpointsNames.userFollowedArtists,
         ),
       staleTime: 50000,
-      enabled: false,
     },
   );
 
@@ -91,41 +88,34 @@
       errorData.add(data);
     }
   }
-  onMount(() => {
-    $followedArtistsQuery.refetch();
-    $userInfoQuery.refetch();
-    $userPlaylistsQuery.refetch();
-  });
 </script>
 
 <svelte:head>
   <title>Profile</title>
 </svelte:head>
-{#if $userInfoQuery.isLoading || $followedArtistsQuery.isLoading}
+{#if $userInfoQuery.isLoading || $followedArtistsQuery.isLoading || $userPlaylistsQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $userInfoQuery.error || $userPlaylistsQuery.error || $followedArtistsQuery.error}
-  <p>Something when wrong , please retry or reconnect</p>
-{:else if $userPlaylistsQuery.data !== undefined && $followedArtistsQuery.data !== undefined && $userInfoQuery.data !== undefined}
-  {#if 'error' in $userInfoQuery.data || 'error' in $userPlaylistsQuery.data || 'error' in $followedArtistsQuery.data}
-    <QueryErrorMessage data={errorData} />
-  {:else}
-    <div class="profile__container">
-      <UserInfo
-        name={$userInfoQuery.data.display_name}
-        followers={$userInfoQuery.data.followers.total}
-        following={$followedArtistsQuery.data.artists.total}
-        image={$userInfoQuery.data.images[0].url}
-        nbPlaylist={$userPlaylistsQuery.data !== undefined
-          ? $userPlaylistsQuery.data.total
-          : 0}
-      />
-      <TopArtists
-        data={$followedArtistsQuery.data.artists.items}
-        limit="5"
-      />
-      <TopTracks data={$userPlaylistsQuery.data.items} />
-    </div>
-  {/if}
+{:else if $userInfoQuery.isError || $userPlaylistsQuery.isError || $followedArtistsQuery.isError}
+  <p>{$userInfoQuery.error}</p>
+{:else if errorData.size > 0}
+  <QueryErrorMessage data={errorData} />
+{:else}
+  <div class="profile__container">
+    <UserInfo
+      name={$userInfoQuery.data.display_name}
+      followers={$userInfoQuery.data.followers.total}
+      following={$followedArtistsQuery.data.artists.total}
+      image={$userInfoQuery.data.images[0]?.url}
+      nbPlaylist={$userPlaylistsQuery.data !== undefined
+        ? $userPlaylistsQuery.data.total
+        : 0}
+    />
+    <TopArtists
+      data={$followedArtistsQuery.data.artists.items}
+      limit={5}
+    />
+    <TopTracks data={$userPlaylistsQuery.data.items} />
+  </div>
 {/if}
 
 <style>
