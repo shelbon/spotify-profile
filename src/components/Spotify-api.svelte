@@ -19,6 +19,7 @@
   const fetchData = (url, method = 'GET') => {
     return fetch(url, {
       method: method,
+      credentials: 'include',
     })
       .then((response) => response.json())
       .then((data) => {
