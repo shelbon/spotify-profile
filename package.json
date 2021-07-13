@@ -1,21 +1,50 @@
 {
-  "name": "spotify-profile",
-  "description":"A web app for vizualizing  personalized data from spotify  build with svelte,fastify and the spotify api",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
+  "name": "spotify-profile-app",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server/server.js"
+    "test": "jest",
+    "test:watch": "npm run test -- --watch",
+    "prepare": "npm run vite-workaround",
+    "vite-workaround": "node _helper/vite-workaround.js",
+    "dev": "run-p dev:*",
+    "dev:routify": "routify",
+    "dev:vite": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "serve": "vite preview"
   },
-  "keywords": [
-    "svelte",
-    "adonisjs",
-    "spotify"
-  ],
-  "author": "shelbon",
-  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@iconify-icons/bx": "1.1.0",
+    "@iconify/svelte": "^1.0.4",
+    "@originjs/vite-plugin-commonjs": "^1.0.0-beta6",
+    "@roxi/routify": "^2.18.0",
+    "@smui/card": "^4.2.0",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/svelte": "^3.0.3",
+    "autoprefixer": "^10.2.6",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
+    "jest-transform-svelte": "^2.1.1",
+    "npm-run-all": "^4.1.5",
+    "svelte": "^3.38.3",
+    "svelte-loading-spinners": "^0.1.5",
+    "vite": "^2.4.0"
+  },
   "dependencies": {
-    "fastify": "3.15.1"
+    "@sveltestack/svelte-query": "^1.4.1",
+    "axios": "^0.21.1",
+    "svelte-inline-svg": "^1.0.8"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "postcss": {
+    "map": false,
+    "plugins": {
+      "autoprefixer": true
+    }
   }
 }
