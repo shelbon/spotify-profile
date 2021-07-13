@@ -57,20 +57,16 @@
       });
   };
   const fetchTopArtists = () => {
-    return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}top/artists/`,
-    );
+    return fetchData(`${import.meta.env.API_BASE_URL}top/artists/`);
   };
   const fetchPlaylists = () => {
-    return fetchData(`${import.meta.env.VITE_API_BASE_URL}playlists`);
+    return fetchData(`${import.meta.env.API_BASE_URL}playlists`);
   };
   const fetchUserInfo = () => {
-    return fetchData(`${import.meta.env.VITE_API_BASE_URL}user`);
+    return fetchData(`${import.meta.env.API_BASE_URL}user`);
   };
   const fetchFollowedArtists = () => {
-    return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}user/following`,
-    );
+    return fetchData(`${import.meta.env.API_BASE_URL}user/following`);
   };
   setContext(apiEndpointsNames.userFollowedArtists, {
     fetchFollowedArtists: () => fetchFollowedArtists(),
