@@ -2,7 +2,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte({ extensions: ['.svelte', '.svg'] })],
 
   optimizeDeps: {
     exclude: [
@@ -19,6 +19,6 @@ export default defineConfig({
     dedupe: ["'@roxi/routify'"],
   },
   server: {
-    port: 8000,
+    port: 5000,
   },
 });
