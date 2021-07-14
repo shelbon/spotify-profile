@@ -1,5 +1,7 @@
 <script>
-  import InlineSVG from 'svelte-inline-svg';
+  import { onMount } from 'svelte';
+
+  import EnjoyableTrack from '../assets/enjoyable_track.svg';
   function login() {
     fetch(`${import.meta.env.VITE_API_BASE_URL}spotify/login/`)
       .then((response) => response.json())
@@ -11,6 +13,19 @@
         console.table(error);
       });
   }
+  onMount(() => {
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    // We listen to the resize event
+    window.addEventListener('resize', () => {
+      // We execute the same script as before
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+  });
 </script>
 
 <!-- routify:options name="login" -->
@@ -32,26 +47,35 @@
       referrerpolicy="origin"><p>Log in to your spotify account</p></a
     >
   </div>
-  <div class="svg-container">
-    <InlineSVG src="images/enjoyable_track.svg" />
-  </div>
+
+  <EnjoyableTrack />
 </div>
 
 <style>
-  :global(#routify-app) {
-    min-height: 100vh;
-  }
   .container {
     display: flex;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     flex-flow: column;
     background: hsla(215, 23%, 16%, 1);
-    min-height: 100vh;
   }
   .inner-container {
     display: flex;
     flex-flow: column;
     flex: 1;
     order: 2;
+    margin: auto 4.5rem;
+  }
+  h1 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 3.3rem;
+    margin-left: 1rem;
+    margin-left: 1rem;
+    padding-bottom: 30px;
+    min-width: 185px;
+    min-height: 64px;
   }
   .btn-log-in {
     display: flex;
@@ -67,19 +91,14 @@
     text-align: center;
     color: #ffffff;
   }
-  h1 {
-    color: white;
-    font-size: 0.875rem;
-    font-weight: bold;
-    line-height: 3.3rem;
-    margin-left: 1rem;
-    margin-left: 1rem;
-    padding-bottom: 30px;
-    min-width: 185px;
-    min-height: 64px;
+  .btn-log-in > p {
+    font-size: 1.6rem;
+  }
+  .container :global(svg) {
+    margin: auto 7.5rem;
   }
 
-  @media (min-width: 767px) {
+  @media (min-width: 1024px) {
     .container {
       flex-flow: row;
       justify-content: flex-start;
@@ -90,6 +109,7 @@
       display: flex;
       flex: 50%;
       order: 0;
+      margin: 14rem 0;
     }
     .btn-log-in {
       display: flex;
@@ -101,15 +121,19 @@
       transform: scale(1.1);
       transition: transform 250ms;
     }
+    .btn-log-in > p {
+      font-size: 2rem;
+    }
     h1 {
       flex: 1;
-      font-size: 2.25rem;
+      font-size: 3.5rem;
+      line-height: 130%;
       color: white;
     }
-    .svg-container:global(svg) {
-      display: block;
-      min-height: 15vh;
-      min-width: 50vw;
+    .container :global(svg) {
+      margin: 0;
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
     }
   }
 </style>

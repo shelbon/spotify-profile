@@ -267,15 +267,20 @@ template {
 body {
   font-family: 'Poppins', sans-serif;
   position: relative;
-  min-height: 100% !important;
+  min-height:100%;
   line-height: 1.45;
   font-size: 1.6rem;
   color: white;
+  
+}
+#app{
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 html {
   font-size: 62.5%;
   scroll-behavior: smooth !important;
-  height: 100%;
+  min-height:100%;
   box-sizing: border-box;
 }
 p {
