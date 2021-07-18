@@ -4,6 +4,7 @@ A web app for vizualizing personalized data from spotify.
 
 [![svelte](https://img.shields.io/badge/svelte-3.38.2-61dafb)](https://svelte.dev/)
 [![Fastify](https://img.shields.io/badge/fastify-3.15.1-61dafb)](https://www.fastify.io/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b13a6f77-4767-445d-a7ba-5ea0e5c1dd64/deploy-status)](https://app.netlify.com/sites/spotyfile/deploys)
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev//shelbon/spotify-profile)
 
 A Fully responsive web app
