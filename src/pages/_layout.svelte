@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { eraseCookie, getHashParams } from '../utils';
+  import { getHashParams } from '../utils';
   import SpotifyApi from '../components/Spotify-api.svelte';
   import Navigation from '../components/Navigation.svelte';
   import NavigationItem from '../components/NavigationItem.svelte';

@@ -2,17 +2,7 @@
   import { onMount } from 'svelte';
 
   import EnjoyableTrack from '../assets/enjoyable_track.svg';
-  function login() {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}spotify/login/`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data) {
-        }
-      })
-      .catch((error) => {
-        console.table(error);
-      });
-  }
+
   onMount(() => {
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
     let vh = window.innerHeight * 0.01;
@@ -33,13 +23,11 @@
 <svelte:head>
   <title>Log in</title>
 </svelte:head>
-<div class="container">
+<main class="container">
   <div class="inner-container">
     <h1>
       Want to know what’s your most liked artist,track or playlist?
-      Want to know how is your playlist,tracks<br />(is it danceable,
-      happy/sad, instrumental and more)? then log in to your spotify
-      account.
+      then log in to your spotify account.
     </h1>
     <a
       class="btn-log-in"
@@ -49,7 +37,7 @@
   </div>
 
   <EnjoyableTrack />
-</div>
+</main>
 
 <style>
   .container {
@@ -64,7 +52,7 @@
     flex-flow: column;
     flex: 1;
     order: 2;
-    margin: auto 4.5rem;
+    margin: 0;
   }
   h1 {
     color: white;
@@ -89,13 +77,14 @@
     border-radius: 8px;
     text-decoration: none;
     text-align: center;
-    color: #ffffff;
+    color: #303030;
   }
   .btn-log-in > p {
     font-size: 1.6rem;
   }
   .container :global(svg) {
-    margin: auto 7.5rem;
+    flex: 1;
+    width: 100%;
   }
 
   @media (min-width: 1024px) {
@@ -105,11 +94,10 @@
       align-items: flex-start;
     }
     .inner-container {
-      align-self: flex-start;
+      align-self: center;
       display: flex;
-      flex: 50%;
       order: 0;
-      margin: 14rem 0;
+      margin: 7rem 0;
     }
     .btn-log-in {
       display: flex;
@@ -126,8 +114,9 @@
     }
     h1 {
       flex: 1;
-      font-size: 3.5rem;
-      line-height: 130%;
+      font-size: 2.4rem;
+      margin-left: 2.4rem;
+      line-height: 115%;
       color: white;
     }
     .container :global(svg) {
