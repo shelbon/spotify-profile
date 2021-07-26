@@ -14,14 +14,14 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
-    "@babel/preset-env": "7.14.7",
-    "@iconify-icons/bx": "1.1.0",
+    "@babel/core": "7.14.8",
+    "@babel/preset-env": "7.14.8",
+    "@iconify-icons/bx": "1.1.1",
     "@iconify/svelte": "1.0.4",
     "@originjs/vite-plugin-commonjs": "1.0.0-beta6",
-    "@roxi/routify": "2.18.0",
+    "@roxi/routify": "2.18.2",
     "@smui/card": "4.2.0",
-    "@sveltejs/vite-plugin-svelte": "1.0.0-next.12",
+    "@sveltejs/vite-plugin-svelte": "1.0.0-next.14",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/svelte": "3.0.3",
     "autoprefixer": "10.3.1",
@@ -30,8 +30,8 @@
     "jest-transform-svelte": "2.1.1",
     "npm-run-all": "4.1.5",
     "svelte": "3.40.1",
-    "svelte-loading-spinners": "0.1.6",
-    "vite": "2.4.2"
+    "svelte-loading-spinners": "0.1.7",
+    "vite": "2.4.3"
   },
   "dependencies": {
     "@sveltestack/svelte-query": "1.4.1",
