@@ -78,4 +78,16 @@
       font-size: 3.5rem;
     }
   }
+  @media (min-width: 2560px) {
+    .nav__item__text {
+      font-size: 3rem;
+    }
+    .nav__item :global(svg) {
+      font-size: 7rem;
+    }
+    .nav__item {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
 </style>

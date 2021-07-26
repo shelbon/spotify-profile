@@ -14,11 +14,15 @@
 
   const { fetchUserInfo } = getContext(apiEndpointsNames.userInfo);
 
+  const { fetchTopTracks } = getContext(apiEndpointsNames.topTracks);
+
+  const { fetchTopArtists } = getContext(
+    apiEndpointsNames.topArtists,
+  );
+  const { fetchPlaylists } = getContext(apiEndpointsNames.playlists);
   const { fetchFollowedArtists } = getContext(
     apiEndpointsNames.userFollowedArtists,
   );
-
-  const { fetchPlaylists } = getContext(apiEndpointsNames.playlists);
   const queryClient = useQueryClient();
 
   const userInfoQuery = useQuery(
@@ -30,12 +34,21 @@
       staleTime: 50000,
     },
   );
-  const userPlaylistsQuery = useQuery(
-    apiEndpointsNames.playlists,
-    fetchPlaylists,
+  const topTracksQuery = useQuery(
+    apiEndpointsNames.topTracks,
+    fetchTopTracks,
     {
       initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.playlists),
+        queryClient.getQueryData(apiEndpointsNames.topTracks),
+      staleTime: 50000,
+    },
+  );
+  const topArtistsQuery = useQuery(
+    apiEndpointsNames.topArtists,
+    fetchTopArtists,
+    {
+      initialData: () =>
+        queryClient.getQueryData(apiEndpointsNames.topArtists),
       staleTime: 50000,
     },
   );
@@ -50,7 +63,15 @@
       staleTime: 50000,
     },
   );
-
+  const userPlaylistsQuery = useQuery(
+    apiEndpointsNames.playlists,
+    fetchPlaylists,
+    {
+      initialData: () =>
+        queryClient.getQueryData(apiEndpointsNames.playlists),
+      staleTime: 50000,
+    },
+  );
   let errorData = new Set();
   $: if (
     $userInfoQuery.data !== undefined &&
@@ -59,6 +80,30 @@
     let data = {
       name: apiEndpointsNames.userInfo,
       error: $userInfoQuery.data.error,
+    };
+    if (!errorData.has(data)) {
+      errorData.add(data);
+    }
+  }
+  $: if (
+    $topArtistsQuery.data !== undefined &&
+    'error' in $topArtistsQuery.data
+  ) {
+    let data = {
+      name: apiEndpointsNames.userFollowedArtists,
+      error: $topArtistsQuery.data.error,
+    };
+    if (!errorData.has(data)) {
+      errorData.add(data);
+    }
+  }
+  $: if (
+    $topTracksQuery.data !== undefined &&
+    'error' in $topTracksQuery.data
+  ) {
+    let data = {
+      name: apiEndpointsNames.playlists,
+      error: $topTracksQuery.data.error,
     };
     if (!errorData.has(data)) {
       errorData.add(data);
@@ -93,10 +138,8 @@
 <svelte:head>
   <title>Profile</title>
 </svelte:head>
-{#if $userInfoQuery.isLoading || $followedArtistsQuery.isLoading || $userPlaylistsQuery.isLoading}
+{#if $userInfoQuery.isLoading || $topArtistsQuery.isLoading || $topTracksQuery.isLoading || $userPlaylistsQuery.isLoading || $followedArtistsQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $userInfoQuery.isError || $userPlaylistsQuery.isError || $followedArtistsQuery.isError}
-  <p>{$userInfoQuery.error}</p>
 {:else if errorData.size > 0}
   <QueryErrorMessage data={errorData} />
 {:else}
@@ -110,11 +153,8 @@
         ? $userPlaylistsQuery.data.total
         : 0}
     />
-    <TopArtists
-      data={$followedArtistsQuery.data.artists.items}
-      limit={5}
-    />
-    <TopTracks data={$userPlaylistsQuery.data.items} />
+    <TopArtists data={$topArtistsQuery.data.items} limit={5} />
+    <TopTracks data={$topTracksQuery.data.items} limit={5} />
   </div>
 {/if}
 
@@ -122,5 +162,7 @@
   .profile__container {
     display: flex;
     flex-flow: column;
+    width: 100%;
+    height: 100%;
   }
 </style>

@@ -40,74 +40,66 @@
 
 {#if isAuthenticated !== undefined}
   {#if isAuthenticated === true}
-    <div class="main-container">
-      <SpotifyApi>
-        <svelte:fragment slot="navigation">
-          <Navigation>
-            <NavigationItem
-              name="Profile"
-              destination="./index"
-              icon={bxUser}
-            />
-            <NavigationItem
-              name="Tracks"
-              destination="./tracks"
-              icon={bxMusic}
-            />
-            <NavigationItem
-              name="Playlist"
-              destination="./playlist"
-              icon={bxsPlaylist}
-            />
-            <NavigationItem
-              name="Artists"
-              destination="./top-artists"
-              icon={bxsMicrophoneAlt}
-            />
-            <NavigationItem
-              name="Log out"
-              destination={`${
-                import.meta.env.VITE_API_BASE_URL
-              }logout`}
-              icon={bxLogOut}
-              on:click={handleLogOutClick}
-            />
-          </Navigation>
-        </svelte:fragment>
-        <main slot="content">
-          <slot />
-        </main>
-      </SpotifyApi>
-    </div>
+    <SpotifyApi>
+      <svelte:fragment slot="navigation">
+        <Navigation>
+          <NavigationItem
+            name="Profile"
+            destination="./index"
+            icon={bxUser}
+          />
+          <NavigationItem
+            name="Tracks"
+            destination="./tracks"
+            icon={bxMusic}
+          />
+          <NavigationItem
+            name="Playlist"
+            destination="./playlist"
+            icon={bxsPlaylist}
+          />
+          <NavigationItem
+            name="Artists"
+            destination="./top-artists"
+            icon={bxsMicrophoneAlt}
+          />
+          <NavigationItem
+            name="Log out"
+            destination={`${import.meta.env.VITE_API_BASE_URL}logout`}
+            icon={bxLogOut}
+            on:click={handleLogOutClick}
+          />
+        </Navigation>
+      </svelte:fragment>
+      <main slot="content">
+        <slot />
+      </main>
+    </SpotifyApi>
   {:else}
     {$goto('/login')}
   {/if}
 {/if}
 
 <style>
-  .main-container {
-    display: flex;
-  }
   main {
-    display: flex;
-    background-color: #404b5a;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14.2rem, 1fr));
+    grid-auto-rows: minmax(14.2rem, 1fr);
     align-items: center;
-    min-height: 100vh;
+    justify-items: center;
+    background-color: #404b5a;
     margin-bottom: var(--nav-height);
-    flex: 2;
+    min-height: 100vh;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 900px) {
     main {
       margin: 0 0 0 var(--nav-width);
     }
-    :global(h1) {
-      font-size: 2.4rem;
-    }
   }
-
-  :global(#routify-app) {
-    height: 100%;
+  @media (min-width: 2560px) {
+    main {
+      margin: 0 0 0 15rem;
+    }
   }
 </style>

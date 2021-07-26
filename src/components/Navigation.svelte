@@ -1,3 +1,4 @@
+<!---TODO fix navbar not fixed on mobile-->
 <nav>
   <slot />
 </nav>
@@ -16,16 +17,21 @@
     height: var(--nav-height);
     width: 100vw;
   }
-  /*do something for the height of the  navigation bar */
+
   @media (min-width: 900px) {
     nav {
+      position: absolute;
       height: 100%;
-      width: 7.2rem !important;
-      flex: 3;
+      width: var(--nav-width) !important;
       flex-flow: column nowrap;
       justify-content: flex-start;
       align-items: center;
       z-index: 0;
+    }
+  }
+  @media (min-width: 2560px) {
+    nav {
+      --nav-width: 15rem;
     }
   }
 </style>

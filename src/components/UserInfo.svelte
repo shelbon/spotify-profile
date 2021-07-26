@@ -13,13 +13,13 @@
 
   <ul class="details">
     <li>
-      Followers:{followers}
+      <p>Followers:{followers}</p>
     </li>
     <li>
-      Following:{following}
+      <p>Following:{following}</p>
     </li>
     <li>
-      Playlists:{nbPlaylist}
+      <p>Playlists:{nbPlaylist}</p>
     </li>
   </ul>
 </div>
@@ -27,8 +27,9 @@
 <style>
   .picture {
     border-radius: 50%;
-    height: 20.3rem;
-    width: 26.4rem;
+    min-height: 10rem;
+    min-width: 16.4rem;
+    max-width: 30%;
   }
   .user-info {
     align-self: center;

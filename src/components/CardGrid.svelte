@@ -17,7 +17,7 @@
   });
 </script>
 
-<ul class="card-list">
+<ul class="card-grid">
   {#each filteredData as data}
     <li class="card-container">
       <Card
@@ -35,28 +35,38 @@
 </ul>
 
 <style>
-  .card-list {
-    display: flex;
-    overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+
+    grid-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+
     padding: 0;
-    width: 100%;
-    margin-left: 2.4rem;
-  }
-  .card-list::-webkit-scrollbar {
-    display: none;
   }
   .card-container {
-    margin: 0 6.8rem 0 0;
+    width: 100%;
+    margin: 0 0 auto 0;
   }
+  .card-grid::-webkit-scrollbar {
+    display: none;
+  }
+
   .image {
     max-width: 100%;
-    min-width: 14.2rem;
-    min-height: 14.2rem;
   }
   .name {
-    margin: 1rem 0;
+    margin: 0;
+  }
+  @media (min-width: 900px) {
+    .card-grid {
+      grid-template-columns: repeat(auto-fit, minmax(14.2rem, 1fr));
+    }
+  }
+  @media (min-width: 2560px) {
+    .card-grid {
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    }
   }
 </style>

@@ -2,13 +2,13 @@
   export const apiEndpointsNames = {
     userInfo: 'user info',
     topArtists: 'top artists',
+    topTracks: 'top tracks',
     playlists: 'playlists',
     userFollowedArtists: 'user followed artists',
   };
 </script>
 
 <script>
-  //TODO finish http error handling
   import {
     QueryClient,
     QueryClientProvider,
@@ -58,7 +58,12 @@
   };
   const fetchTopArtists = () => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}top/artists/`,
+      `${import.meta.env.VITE_API_BASE_URL}top/artists`,
+    );
+  };
+  const fetchTopTracks = () => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}top/tracks`,
     );
   };
   const fetchPlaylists = () => {
@@ -83,6 +88,9 @@
   });
   setContext(apiEndpointsNames.playlists, {
     fetchPlaylists: () => fetchPlaylists(),
+  });
+  setContext(apiEndpointsNames.topTracks, {
+    fetchTopTracks: () => fetchTopTracks(),
   });
 </script>
 
