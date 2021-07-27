@@ -54,9 +54,16 @@
   .image {
     max-width: 100%;
     min-width: 14.2rem;
-    min-height: 14.2rem;
+    max-height: 14.2rem;
   }
   .name {
     margin: 1rem 0;
+  }
+  @media (min-width: 1440px) {
+    .image {
+      max-width: 100%;
+      min-width: 14.2rem;
+      max-height: inherit;
+    }
   }
 </style>
