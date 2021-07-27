@@ -56,14 +56,18 @@
         return data;
       });
   };
-  const fetchTopArtists = () => {
+  const fetchTopArtists = (time_range = 'long_term', limit = 50) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}top/artists`,
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }top/artists?time_range=${time_range}&limit=${limit}`,
     );
   };
-  const fetchTopTracks = () => {
+  const fetchTopTracks = (time_range = 'long_term', limit = 50) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}top/tracks`,
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }top/tracks?time_range=${time_range}&limit=${limit}`,
     );
   };
   const fetchPlaylists = () => {
