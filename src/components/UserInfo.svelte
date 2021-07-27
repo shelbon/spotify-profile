@@ -4,10 +4,15 @@
   export let following;
   export let nbPlaylist;
   export let name;
+  import DefaultUserAvatar from '../assets/user.svg';
 </script>
 
 <div class="user-info">
-  <img src={image} alt="profile" class="picture" />
+  {#if image}
+    <img src={image} alt="profile" class="picture" />
+  {:else}
+    <DefaultUserAvatar />
+  {/if}
 
   <h1 class="name">{name}</h1>
 
@@ -49,5 +54,14 @@
   }
   .name {
     text-align: center;
+  }
+  .user-info :global(svg) {
+    border: 2px solid currentcolor;
+    padding: 1rem;
+    border-radius: 50%;
+    min-height: 10rem;
+    min-width: 16.4rem;
+    width: 30%;
+    height: 100%;
   }
 </style>
