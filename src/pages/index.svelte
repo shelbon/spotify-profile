@@ -41,6 +41,7 @@
       initialData: () =>
         queryClient.getQueryData(apiEndpointsNames.topTracks),
       staleTime: 50000,
+      retry: 1,
     },
   );
   const topArtistsQuery = useQuery(
@@ -50,6 +51,7 @@
       initialData: () =>
         queryClient.getQueryData(apiEndpointsNames.topArtists),
       staleTime: 50000,
+      retry: 1,
     },
   );
   const followedArtistsQuery = useQuery(
@@ -61,6 +63,7 @@
           apiEndpointsNames.userFollowedArtists,
         ),
       staleTime: 50000,
+      retry: 1,
     },
   );
   const userPlaylistsQuery = useQuery(
@@ -70,9 +73,10 @@
       initialData: () =>
         queryClient.getQueryData(apiEndpointsNames.playlists),
       staleTime: 50000,
+      retry: 1,
     },
   );
-  let errorData = new Set();
+  $: errorData = new Set();
   $: if (
     $userInfoQuery.data !== undefined &&
     'error' in $userInfoQuery.data
