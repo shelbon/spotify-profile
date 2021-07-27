@@ -20,16 +20,16 @@
 <ul class="card-list">
   {#each filteredData as data}
     <li class="card-container">
-      <Card
-        ><img
+      <Card>
+        <img
           class="image"
           src={typeof data.images !== 'undefined'
             ? data.images[0].url
             : data.album.images[0].url}
           alt="card"
         />
-        <p class="name">{data.name}</p></Card
-      >
+        <p class="name">{data.name}</p>
+      </Card>
     </li>
   {/each}
 </ul>
@@ -43,13 +43,13 @@
     scroll-snap-type: x proximity;
     padding: 0;
     width: 100%;
-    margin-left: 2.4rem;
   }
   .card-list::-webkit-scrollbar {
     display: none;
   }
   .card-container {
     margin: 0 6.8rem 0 0;
+    flex: 1;
   }
   .image {
     max-width: 100%;
@@ -63,7 +63,14 @@
     .image {
       max-width: 100%;
       min-width: 14.2rem;
-      max-height: inherit;
+      max-height: 18rem;
+    }
+  }
+  @media (min-width: 2560px) {
+    .image {
+      max-width: 100%;
+      min-width: 14.2rem;
+      max-height: 36rem;
     }
   }
 </style>
