@@ -7,7 +7,7 @@
 
 <section class="top-tracks">
   <h2 class="title">Top Tracks</h2>
-  {#if limit <= 5}
+  {#if limit <= 5 && limit >= 1}
     <CardList {data} {limit} />
   {:else}
     <CardGrid {data} {limit} />
@@ -16,11 +16,9 @@
 
 <style>
   .top-tracks {
-    margin-left: 2.5rem;
-  }
-  .title {
     margin-left: 2.4rem;
   }
+
   @media (min-width: 900px) {
     .top-tracks {
       margin-left: 8.8rem;

@@ -20,9 +20,7 @@
     flex-flow: column;
     margin-left: 2.5rem;
   }
-  .title {
-    margin-left: 2.4rem;
-  }
+
   @media (min-width: 900px) {
     .top-artists {
       margin-left: 8.8rem;
