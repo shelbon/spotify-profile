@@ -14,7 +14,8 @@
         let element = data[Symbol.iterator]().next().value;
 
         if (isObject(element.error)) {
-          errorMessage = element.error.detail;
+          errorMessage =
+            element.error.detail || element.console.error.message;
         } else if ('error_description' in element) {
           errorMessage = element.error_description;
         }
