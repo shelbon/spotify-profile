@@ -1,4 +1,3 @@
-<!---TODO fix navbar not fixed on mobile-->
 <nav>
   <slot />
 </nav>
