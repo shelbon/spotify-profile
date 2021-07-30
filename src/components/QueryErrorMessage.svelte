@@ -15,7 +15,7 @@
 
         if (isObject(element.error)) {
           errorMessage =
-            element.error.detail || element.console.error.message;
+            element.error.detail || element.error.message;
         } else if ('error_description' in element) {
           errorMessage = element.error_description;
         }
@@ -96,6 +96,8 @@
 
 <style>
   .error-query-container {
+    align-self: center;
+    justify-self: center;
     display: flex;
     flex-flow: column;
   }
