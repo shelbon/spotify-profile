@@ -54,6 +54,13 @@
           }
         }
         return data;
+      })
+      .catch((err) => {
+        if (err.message.toLowerCase() === 'failed to fetch') {
+          throw new Error(
+            'Sorry ,an unknow error happend please retry or contact technical service at xxxx@xxx.fr',
+          );
+        }
       });
   };
   const fetchTopArtists = (time_range = 'long_term', limit = 50) => {

@@ -8,32 +8,36 @@
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
-  const { fetchTopTracks } = getContext(apiEndpointsNames.topTracks);
+  const { fetchTopArtists } = getContext(
+    apiEndpointsNames.topArtists,
+  );
   const queryClient = useQueryClient();
-  const topTracksQuery = useQuery(
-    apiEndpointsNames.topTracks,
-    fetchTopTracks,
+  const topArtistsQuery = useQuery(
+    apiEndpointsNames.topArtists,
+    fetchTopArtists,
     {
       initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.topTracks),
+        queryClient.getQueryData(apiEndpointsNames.topArtists),
       staleTime: 50000,
     },
   );
 </script>
 
-<svelte:head><title>Tracks</title></svelte:head>
-{#if $topTracksQuery.isLoading}
+<svelte:head>
+  <title>Top artists</title>
+</svelte:head>
+{#if $topArtistsQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $topTracksQuery.error || (typeof $topTracksQuery.data !== 'undefined' && 'error' in $topTracksQuery.data)}
+{:else if $topArtistsQuery.error || (typeof $topArtistsQuery.data !== 'undefined' && 'error' in $topArtistsQuery.data)}
   <QueryErrorMessage
     data={new Set().add({
-      error: $topTracksQuery.error || $topTracksQuery.data.error,
+      error: $topArtistsQuery.error || $topArtistsQuery.data.error,
     })}
   />
 {:else}
   <PageSection
-    title="Top Tracks"
-    data={$topTracksQuery.data.items}
-    baseUrlLink="track"
+    title="Top artists"
+    data={$topArtistsQuery.data.items}
+    baseUrlLink="artist"
   />
 {/if}
