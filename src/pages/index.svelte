@@ -10,6 +10,7 @@
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import UserInfo from '../components/UserInfo.svelte';
   import PageSection from '../components/PageSection.svelte';
+  import { isEmptyObject } from '../utils';
 
   const { fetchUserInfo } = getContext(apiEndpointsNames.userInfo);
 
@@ -97,7 +98,7 @@
     let error;
     if ($topArtistsQuery.data !== undefined) {
       error = $topArtistsQuery.data.error;
-    } else if (topArtistsQuery.error) {
+    } else if ($topArtistsQuery.error) {
       error = { message: $topArtistsQuery.error.message };
     }
     if (typeof error !== 'undefined') {
@@ -171,6 +172,8 @@
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
 {:else if errorData.size > 0}
   <QueryErrorMessage data={errorData} />
+{:else if isEmptyObject($userInfoQuery.data) || isEmptyObject($topArtistsQuery.data) || isEmptyObject($topTracksQuery.data) || isEmptyObject($userPlaylistsQuery.data) || isEmptyObject($followedArtistsQuery.data)}
+  <p class="not-found">user data not found</p>
 {:else}
   <div class="profile__container">
     <UserInfo
@@ -203,5 +206,8 @@
     flex-flow: column;
     width: 100%;
     height: 100%;
+  }
+  .not-found {
+    align-self: center;
   }
 </style>
