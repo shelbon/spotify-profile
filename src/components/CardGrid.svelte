@@ -23,7 +23,7 @@
   {#each filteredData as data}
     <li class="card-container">
       <Card>
-        <a href={$url(`${baseUrlLink}/${data.id}`)}>
+        <a href={$url(`/${baseUrlLink}/${data.id}`)}>
           <img
             class="image"
             src={typeof data.images !== 'undefined'
@@ -45,7 +45,6 @@
     grid-gap: 2rem;
     align-items: center;
     justify-items: center;
-
     padding: 0;
   }
   .card-container {

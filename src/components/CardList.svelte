@@ -24,7 +24,7 @@
   {#each filteredData as data}
     <li class="card-container">
       <Card>
-        <a href={$url(`${baseUrlLink}/${data.id}`)}>
+        <a href={$url(`/${baseUrlLink}/${data.id}`)}>
           <img
             class="image"
             src={typeof data.images !== 'undefined'

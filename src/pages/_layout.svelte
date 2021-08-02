@@ -82,9 +82,9 @@
 
 <style>
   main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14.2rem, 1fr));
-    grid-auto-rows: minmax(14.2rem, 1fr);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
     background-color: #404b5a;
     margin-bottom: var(--nav-height);
     min-height: 100vh;
@@ -92,7 +92,6 @@
   /*center  loading indicator*/
   :global(.wrapper) {
     align-self: center;
-    justify-self: center;
   }
   @media (min-width: 900px) {
     main {

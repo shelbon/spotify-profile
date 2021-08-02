@@ -20,6 +20,7 @@
   .container {
     display: flex;
     flex-flow: column;
+    margin-bottom: auto;
     margin-left: 2.5rem;
   }
 

@@ -5,6 +5,10 @@
     topTracks: 'top tracks',
     playlists: 'playlists',
     userFollowedArtists: 'user followed artists',
+    artist: 'Artist',
+    artistTopTracks: 'Artist top track',
+    artistAlbum: 'Artist album',
+    artistRelatedArtists: 'Artist related artists',
   };
 </script>
 
@@ -15,7 +19,13 @@
   } from '@sveltestack/svelte-query';
   import { isObject } from '../utils';
   import { setContext } from 'svelte';
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   const fetchData = (url, method = 'GET') => {
     return fetch(url, {
       method: method,
@@ -88,6 +98,26 @@
       `${import.meta.env.VITE_API_BASE_URL}user/following`,
     );
   };
+  const fetchArtist = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}artist/${id}`,
+    );
+  };
+  const fetchArtistAlbum = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/album`,
+    );
+  };
+  const fetchArtistTopTracks = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/top`,
+    );
+  };
+  const fetchArtistRelatedArtists = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/related`,
+    );
+  };
   setContext(apiEndpointsNames.userFollowedArtists, {
     fetchFollowedArtists: () => fetchFollowedArtists(),
   });
@@ -102,6 +132,18 @@
   });
   setContext(apiEndpointsNames.topTracks, {
     fetchTopTracks: () => fetchTopTracks(),
+  });
+  setContext(apiEndpointsNames.artist, {
+    fetchArtist: (id) => fetchArtist(id),
+  });
+  setContext(apiEndpointsNames.artistAlbum, {
+    fetchArtistAlbum: (id) => fetchArtistAlbum(id),
+  });
+  setContext(apiEndpointsNames.artistTopTracks, {
+    fetchArtistTopTracks: (id) => fetchArtistTopTracks(id),
+  });
+  setContext(apiEndpointsNames.artistRelatedArtists, {
+    fetchArtistRelatedArtists: (id) => fetchArtistRelatedArtists(id),
   });
 </script>
 
