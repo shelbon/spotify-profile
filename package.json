@@ -16,7 +16,7 @@
   "devDependencies": {
     "@babel/core": "7.14.8",
     "@babel/preset-env": "7.14.8",
-    "@iconify-icons/bx": "1.1.1",
+    "@iconify-icons/bx": "1.1.2",
     "@iconify/svelte": "1.0.4",
     "@originjs/vite-plugin-commonjs": "1.0.0-beta6",
     "@roxi/routify": "2.18.2",
