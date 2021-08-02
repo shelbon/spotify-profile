@@ -199,14 +199,7 @@
 {:else if errorData.size > 0}
   <QueryErrorMessage data={errorData} />
 {:else if isEmptyObject($artistInfoQuery.data) || isEmptyObject($artistTopTracksQuery.data) || isEmptyObject($artistAlbumQuery.data) || isEmptyObject($artistRelatedArtistsQuery.data)}
-  <p
-    style="align-self: center;
-  justify-self: center;
-  display: flex;
-  flex-flow: column;"
-  >
-    Artist not found
-  </p>
+  <p style="align-self: center;">Artist not found</p>
 {:else}
   <ArtistInfo data={$artistInfoQuery.data} />
   <PageSection
