@@ -11,4 +11,11 @@ function getHashParams() {
 function isObject(variable) {
   return typeof variable === 'object' && variable !== null;
 }
-export { getHashParams, isObject };
+function isEmptyObject(obj) {
+  return (
+    obj === null ||
+    typeof obj === 'undefined' ||
+    (Object.keys(obj).length === 0 && obj.constructor === Object)
+  );
+}
+export { getHashParams, isObject, isEmptyObject };
