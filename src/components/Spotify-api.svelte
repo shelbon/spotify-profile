@@ -9,6 +9,8 @@
     artistTopTracks: 'Artist top track',
     artistAlbum: 'Artist album',
     artistRelatedArtists: 'Artist related artists',
+    album: 'Album',
+    playlist: 'Playlist',
   };
 </script>
 
@@ -23,6 +25,7 @@
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
+        staleTime: Infinity,
       },
     },
   });
@@ -108,6 +111,11 @@
       `${import.meta.env.VITE_API_BASE_URL}artist/${id}/album`,
     );
   };
+  const fetchPlaylist = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}playlist/${id}`,
+    );
+  };
   const fetchArtistTopTracks = (id) => {
     return fetchData(
       `${import.meta.env.VITE_API_BASE_URL}artist/${id}/top`,
@@ -116,6 +124,11 @@
   const fetchArtistRelatedArtists = (id) => {
     return fetchData(
       `${import.meta.env.VITE_API_BASE_URL}artist/${id}/related`,
+    );
+  };
+  const fetchAlbum = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}album/${id}`,
     );
   };
   setContext(apiEndpointsNames.userFollowedArtists, {
@@ -144,6 +157,12 @@
   });
   setContext(apiEndpointsNames.artistRelatedArtists, {
     fetchArtistRelatedArtists: (id) => fetchArtistRelatedArtists(id),
+  });
+  setContext(apiEndpointsNames.album, {
+    fetchAlbum: (id) => fetchAlbum(id),
+  });
+  setContext(apiEndpointsNames.playlist, {
+    fetchPlaylist: (id) => fetchPlaylist(id),
   });
 </script>
 
