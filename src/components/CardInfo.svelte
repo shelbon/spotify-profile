@@ -7,7 +7,6 @@
   export let year = '';
 </script>
 
-{@debug year}
 <div class="card-info">
   {#if image}
     <img src={image.url} alt="profile" class="picture" />
