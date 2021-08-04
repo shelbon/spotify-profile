@@ -14,8 +14,8 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "@babel/core": "7.14.8",
-    "@babel/preset-env": "7.14.9",
+    "@babel/core": "7.15.0",
+    "@babel/preset-env": "7.15.0",
     "@iconify-icons/bx": "1.1.2",
     "@iconify/svelte": "1.0.4",
     "@originjs/vite-plugin-commonjs": "1.0.0-beta6",
