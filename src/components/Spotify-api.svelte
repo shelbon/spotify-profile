@@ -11,6 +11,8 @@
     artistRelatedArtists: 'Artist related artists',
     album: 'Album',
     playlist: 'Playlist',
+    trackFeature: 'Track feature',
+    track: 'track',
   };
 </script>
 
@@ -25,7 +27,6 @@
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
-        staleTime: Infinity,
       },
     },
   });
@@ -36,7 +37,6 @@
     })
       .then((response) => response.json())
       .then((data) => {
-        console.table({ dataBefore: data });
         if (data === {} || isObject(data.error)) {
           switch (data.error.status) {
             case 401:
@@ -131,6 +131,16 @@
       `${import.meta.env.VITE_API_BASE_URL}album/${id}`,
     );
   };
+  const fetchTrack = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}track/${id}`,
+    );
+  };
+  const fetchTrackFeature = (id) => {
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}audio-features/${id}`,
+    );
+  };
   setContext(apiEndpointsNames.userFollowedArtists, {
     fetchFollowedArtists: () => fetchFollowedArtists(),
   });
@@ -163,6 +173,12 @@
   });
   setContext(apiEndpointsNames.playlist, {
     fetchPlaylist: (id) => fetchPlaylist(id),
+  });
+  setContext(apiEndpointsNames.trackFeature, {
+    fetchTrackFeature: (id) => fetchTrackFeature(id),
+  });
+  setContext(apiEndpointsNames.track, {
+    fetchTrack: (id) => fetchTrack(id),
   });
 </script>
 

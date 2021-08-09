@@ -11,6 +11,7 @@ export default defineConfig({
       '@roxi/routify',
       '@iconify-icons/bx',
       'svelte-inline-svg',
+      'svelte-chartjs',
       '@smui/card',
       '@smui/common',
     ],
