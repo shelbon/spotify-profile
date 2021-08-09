@@ -1,14 +1,11 @@
 <script>
-  import { url } from '@roxi/routify';
-
-  export let data = [];
-  export let limit = -1;
-  export let baseUrlLink = '';
-  import Card from './card.svelte';
+  import Card from './Card.svelte';
   import { onMount } from 'svelte';
 
+  export let data = [];
+  export let baseUrlLink = '';
+  export let limit = -1;
   let filteredData = [];
-
   onMount(() => {
     if (limit > 0) {
       filteredData = data.filter(
