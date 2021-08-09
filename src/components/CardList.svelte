@@ -4,7 +4,7 @@
   export let data = [];
   export let limit = -1;
   export let baseUrlLink = '';
-  import Card from '@smui/card';
+  import Card from './card.svelte';
   import { onMount } from 'svelte';
 
   let filteredData = [];
@@ -23,18 +23,14 @@
 <ul class="card-list">
   {#each filteredData as data}
     <li class="card-container">
-      <Card>
-        <a href={$url(`/${baseUrlLink}/${data.id}`)}>
-          <img
-            class="image"
-            src={typeof data.images !== 'undefined'
-              ? data.images[0].url
-              : data.album.images[0].url}
-            alt="card"
-          />
-          <p class="name">{data.name}</p>
-        </a>
-      </Card>
+      <Card
+        name={data.name}
+        {baseUrlLink}
+        image={typeof data.images !== 'undefined'
+          ? data.images[0]
+          : data.album.images[0]}
+        id={data.id}
+      />
     </li>
   {/each}
 </ul>
@@ -55,31 +51,5 @@
   .card-container {
     margin: 0 6.8rem 0 0;
     flex: 1;
-  }
-  .card-container a {
-    text-decoration: none;
-    color: currentColor;
-  }
-  .image {
-    max-width: 100%;
-    min-width: 14.2rem;
-    max-height: 14.2rem;
-  }
-  .name {
-    margin: 1rem 0;
-  }
-  @media (min-width: 1440px) {
-    .image {
-      max-width: 100%;
-      min-width: 14.2rem;
-      max-height: 18rem;
-    }
-  }
-  @media (min-width: 2560px) {
-    .image {
-      max-width: 100%;
-      min-width: 14.2rem;
-      max-height: 36rem;
-    }
   }
 </style>
