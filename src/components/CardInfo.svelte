@@ -3,8 +3,21 @@
   export let image = null;
   export let name = null;
   export let total = 0;
-  export let creatorName = '';
-  export let year = '';
+  export let creators = [];
+  export let release_date = '';
+
+  function getCreatorsName() {
+    let creatorsName = '';
+    if (creators.length > 0) {
+      if ('name' in creators[0]) {
+        creatorsName = creators.map((creator) => creator.name).join();
+      }
+    }
+    return creatorsName;
+  }
+  function getYear() {
+    return release_date.substring(0, 4);
+  }
 </script>
 
 <div class="card-info">
@@ -17,11 +30,15 @@
   <h2 class="name">{name}</h2>
 
   <div class="details">
-    <span
-      >{creatorName}
-      {year ? `- ${year}` : ''}</span
+    <span>
+      <span>
+        {getCreatorsName()}
+      </span>
+      {release_date ? `- ${getYear()}` : ''}</span
     >
-    <span>tracks: {total}</span>
+    {#if total}
+      <span>tracks: {total}</span>
+    {/if}
   </div>
 </div>
 

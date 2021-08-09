@@ -35,14 +35,14 @@
     })}
   />
 {:else if isEmptyObject($playlistQuery.data)}
-  <p>album is empty</p>
+  <p>playlist data not found ,reload the page or reconnect</p>
 {:else}
   <div class="album">
     <CardInfo
       image={$playlistQuery.data.images[1]}
       name={$playlistQuery.data.name}
       total={$playlistQuery.data.tracks.total}
-      creatorName={$playlistQuery.data.owner.display_name}
+      creators={$playlistQuery.data.owner.display_name}
     />
     <TrackList data={$playlistQuery.data.tracks.items} />
   </div>

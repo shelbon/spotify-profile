@@ -42,8 +42,8 @@
       image={$albumQuery.data.images[1]}
       name={$albumQuery.data.name}
       total={$albumQuery.data.total_tracks}
-      creatorName={$albumQuery.data.artists[0].name}
-      year={$albumQuery.data.release_date.substring(0, 4)}
+      creators={$albumQuery.data.artists}
+      release_date={$albumQuery.data.release_date.substring(0, 4)}
     />
     <TrackList data={$albumQuery.data.tracks.items} />
   </div>
