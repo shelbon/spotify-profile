@@ -12,7 +12,7 @@
 
   import ArtistInfo from '../../components/ArtistInfo.svelte';
   import PageSection from '../../components/PageSection.svelte';
-  import { afterPageLoad } from '@roxi/routify';
+  import { params } from '@roxi/routify';
 
   const { fetchArtist } = getContext(apiEndpointsNames.artist);
   const { fetchArtistTopTracks } = getContext(
@@ -28,7 +28,7 @@
 
   const queryClient = useQueryClient();
   const isFetching = useIsFetching();
-  $: id = undefined;
+  $: id = $params.id;
   const artistInfoQuery = useQuery(
     [apiEndpointsNames.artist, id],
     () => fetchArtist(id),
@@ -114,13 +114,7 @@
   ) {
     title = `artist:${$artistInfoQuery.data.name}`;
   }
-  onMount(() => {
-    id = window.location.pathname.split('/')[2];
-  });
-  $afterPageLoad(() => {
-    console.log('page loaded');
-    id = window.location.pathname.split('/')[2];
-  });
+
   $: errorData = new Set();
   $: if (!$artistInfoQuery.isLoading) {
     let error;
