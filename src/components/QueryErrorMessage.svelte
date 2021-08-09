@@ -24,7 +24,6 @@
         let clientSideError = new Map();
         data.forEach((element) => {
           if (isObject(element.error)) {
-            console.table({ status: element.error.status });
             if (statusCodeServer.includes(element.error.status)) {
               switch (element.error.status) {
                 case 500:
@@ -60,10 +59,7 @@
             }
           }
         });
-        console.table({
-          serverSideError: serverSideError.size,
-          clientSideError: clientSideError.size,
-        });
+
         if (serverSideError.size > 0) {
           if (serverSideError.has(500)) {
             errorMessage = serverSideError.get(500);
