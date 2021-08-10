@@ -9,9 +9,16 @@
   function getCreatorsName() {
     let creatorsName = '';
     if (creators.length > 0) {
-      if ('name' in creators[0]) {
-        creatorsName = creators.map((creator) => creator.name).join();
-      }
+      creatorsName = creators
+        .map((creator) => {
+          console.table(creator);
+          if ('name' in creator) {
+            return creator.name;
+          } else if ('display_name' in creator) {
+            return creator.display_name;
+          }
+        })
+        .join();
     }
     return creatorsName;
   }
@@ -45,8 +52,8 @@
 <style>
   .picture {
     height: auto;
-    max-width: 100%;
-    border-radius: 50%;
+    max-width: 300px;
+    border-radius: 5px;
   }
   .card-info {
     display: flex;

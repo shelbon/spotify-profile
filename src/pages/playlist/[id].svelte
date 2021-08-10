@@ -39,10 +39,10 @@
 {:else}
   <div class="album">
     <CardInfo
-      image={$playlistQuery.data.images[1]}
+      image={$playlistQuery.data.images[0]}
       name={$playlistQuery.data.name}
       total={$playlistQuery.data.tracks.total}
-      creators={$playlistQuery.data.owner.display_name}
+      creators={[$playlistQuery.data.owner]}
     />
     <TrackList data={$playlistQuery.data.tracks.items} />
   </div>
@@ -57,7 +57,7 @@
   @media (min-width: 500px) {
     .album {
       flex-direction: row;
-      margin: 0 4rem;
+      margin: 1rem 4rem;
     }
   }
 </style>
