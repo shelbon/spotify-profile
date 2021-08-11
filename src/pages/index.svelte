@@ -1,5 +1,4 @@
 <script>
-  //TODO Reformat error collection it's ugly
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import { getContext } from 'svelte';
   import {
@@ -11,6 +10,8 @@
   import UserInfo from '../components/UserInfo.svelte';
   import PageSection from '../components/PageSection.svelte';
   import { isEmptyObject } from '../utils';
+  import CardList from '../components/CardList.svelte';
+  import Filter from '../components/Filter.svelte';
 
   const { fetchUserInfo } = getContext(apiEndpointsNames.userInfo);
 
@@ -185,18 +186,24 @@
         ? $userPlaylistsQuery.data.total
         : 0}
     />
-    <PageSection
-      title="Top Artists"
-      data={$topArtistsQuery.data.items}
-      limit={5}
-      baseUrlLink="artist"
-    />
-    <PageSection
-      title="Top Tracks"
-      data={$topTracksQuery.data.items}
-      limit={5}
-      baseUrlLink="track"
-    />
+    <PageSection title="Top Artists">
+      <Filter
+        let:filteredData
+        items={$topArtistsQuery.data.items}
+        limit={5}
+      >
+        <CardList baseUrlLink="artist" data={filteredData} />
+      </Filter>
+    </PageSection>
+    <PageSection title="Top Tracks">
+      <Filter
+        let:filteredData
+        items={$topTracksQuery.data.items}
+        limit={5}
+      >
+        <CardList baseUrlLink="track" data={filteredData} />
+      </Filter>
+    </PageSection>
   </div>
 {/if}
 

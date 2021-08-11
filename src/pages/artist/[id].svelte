@@ -13,6 +13,9 @@
   import ArtistInfo from '../../components/ArtistInfo.svelte';
   import PageSection from '../../components/PageSection.svelte';
   import { params } from '@roxi/routify';
+  import CardGrid from '../../components/CardGrid.svelte';
+  import CardList from '../../components/CardList.svelte';
+  import Filter from '../../components/Filter.svelte';
 
   const { fetchArtist } = getContext(apiEndpointsNames.artist);
   const { fetchArtistTopTracks } = getContext(
@@ -196,22 +199,31 @@
   <p style="align-self: center;">Artist not found</p>
 {:else}
   <ArtistInfo data={$artistInfoQuery.data} />
-  <PageSection
-    title="Top Tracks"
-    data={$artistTopTracksQuery.data.tracks}
-    baseUrlLink="track"
-    limit={10}
-  />
-  <PageSection
-    title="Album"
-    data={$artistAlbumQuery.data.items}
-    limit={5}
-    baseUrlLink="album"
-  />
-  <PageSection
-    title="Related Artists"
-    data={$artistRelatedArtistsQuery.data.artists}
-    baseUrlLink="artist"
-    limit={5}
-  />
+  <PageSection title="Top Tracks">
+    <Filter
+      let:filteredData
+      items={$artistTopTracksQuery.data.tracks}
+      limit={10}
+    >
+      <CardGrid baseUrlLink="track" data={filteredData} />
+    </Filter>
+  </PageSection>
+  <PageSection title="Album">
+    <Filter
+      let:filteredData
+      items={$artistAlbumQuery.data.items}
+      limit={5}
+    >
+      <CardList baseUrlLink="album" data={filteredData} />
+    </Filter>
+  </PageSection>
+  <PageSection title="Related Artists">
+    <Filter
+      let:filteredData
+      items={$artistRelatedArtistsQuery.data.artists}
+      limit={5}
+    >
+      <CardList baseUrlLink="artist" data={filteredData} />
+    </Filter>
+  </PageSection>
 {/if}
