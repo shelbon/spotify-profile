@@ -8,6 +8,8 @@
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
+  import CardGrid from '../components/CardGrid.svelte';
+
   const { fetchTopArtists } = getContext(
     apiEndpointsNames.topArtists,
   );
@@ -35,9 +37,10 @@
     })}
   />
 {:else}
-  <PageSection
-    title="Top artists"
-    data={$topArtistsQuery.data.items}
-    baseUrlLink="artist"
-  />
+  <PageSection title="Top artists">
+    <CardGrid
+      data={$topArtistsQuery.data.items}
+      baseUrlLink="artist"
+    />
+  </PageSection>
 {/if}

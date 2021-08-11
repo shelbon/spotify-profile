@@ -8,6 +8,7 @@
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
+  import CardGrid from '../components/CardGrid.svelte';
   const { fetchPlaylists } = getContext(apiEndpointsNames.playlists);
   const queryClient = useQueryClient();
   const playlistsQuery = useQuery(
@@ -33,9 +34,10 @@
     })}
   />
 {:else}
-  <PageSection
-    title="Your playlists"
-    data={$playlistsQuery.data.items}
-    baseUrlLink="playlist"
-  />
+  <PageSection title="Your playlists">
+    <CardGrid
+      data={$playlistsQuery.data.items}
+      baseUrlLink="playlist"
+    />
+  </PageSection>
 {/if}

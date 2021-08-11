@@ -8,6 +8,7 @@
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
+  import CardGrid from '../components/CardGrid.svelte';
   const { fetchTopTracks } = getContext(apiEndpointsNames.topTracks);
   const queryClient = useQueryClient();
   const topTracksQuery = useQuery(
@@ -31,9 +32,7 @@
     })}
   />
 {:else}
-  <PageSection
-    title="Top Tracks"
-    data={$topTracksQuery.data.items}
-    baseUrlLink="track"
-  />
+  <PageSection title="Top Tracks">
+    <CardGrid data={$topTracksQuery.data.items} baseUrlLink="track" />
+  </PageSection>
 {/if}
