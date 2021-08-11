@@ -79,4 +79,9 @@
   .btn-play {
     align-self: center;
   }
+  @media (min-width: 900px) {
+    .track-list {
+      margin-top: 0;
+    }
+  }
 </style>
