@@ -35,8 +35,7 @@
   },
   "dependencies": {
     "@sveltestack/svelte-query": "1.4.1",
-    "svelte-chartjs": "^1.0.1",
-    "svelte-inline-svg": "1.0.8"
+    "svelte-chartjs": "^1.0.1"
   },
   "browserslist": [
     "defaults"
