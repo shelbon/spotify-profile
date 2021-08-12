@@ -45,14 +45,16 @@
     flex-direction: column;
     text-decoration: none;
     color: currentColor;
+    padding: 2.5rem;
   }
-  :global(.mdc-card):hover,
+  a:hover,
   a:focus {
     background-color: rgba(17, 20, 23, 0.5);
     border-radius: 5px;
   }
+
+  /*<Card/> style */
   :global(.mdc-card) {
-    padding: 2.5rem;
     width: min-content;
   }
   @media (min-width: 1440px) {
