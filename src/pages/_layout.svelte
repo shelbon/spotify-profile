@@ -21,10 +21,7 @@
   };
   let localStorage = window.localStorage;
   $: isAuthenticated = undefined;
-  $: console.table({
-    isAuthenticated: isAuthenticated,
-    localStorage: localStorage,
-  });
+
   $: if (isAuthenticated) {
     localStorage.setItem('isLogin', 'true');
   }

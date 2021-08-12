@@ -4,7 +4,6 @@
   export let name;
   export let icon;
   export let destination;
-  $: console.log(destination);
 </script>
 
 <a

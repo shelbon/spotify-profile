@@ -11,7 +11,6 @@
     if (creators.length > 0) {
       creatorsName = creators
         .map((creator) => {
-          console.table(creator);
           if ('name' in creator) {
             return creator.name;
           } else if ('display_name' in creator) {
