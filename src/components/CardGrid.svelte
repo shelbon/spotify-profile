@@ -14,6 +14,7 @@
           ? item.images[0]
           : item.album.images[0]}
         id={item.id}
+        artists={item.artists}
       />
     </li>
   {/each}

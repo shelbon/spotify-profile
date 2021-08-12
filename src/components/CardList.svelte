@@ -6,15 +6,16 @@
 </script>
 
 <ul class="card-list">
-  {#each data as items}
+  {#each data as item}
     <li class="card-container">
       <Card
-        name={items.name}
+        name={item.name}
         {baseUrlLink}
-        image={typeof items.images !== 'undefined'
-          ? items.images[0]
-          : items.album.images[0]}
-        id={items.id}
+        image={typeof item.images !== 'undefined'
+          ? item.images[0]
+          : item.album.images[0]}
+        id={item.id}
+        artists={item.artists}
       />
     </li>
   {/each}
