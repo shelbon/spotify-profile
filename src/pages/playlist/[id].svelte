@@ -7,7 +7,7 @@
   import { Wave } from 'svelte-loading-spinners';
   import { params } from '@roxi/routify';
   import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
-  import TrackList from '../../components/trackList.svelte';
+  import TrackList from '../../components/TrackList.svelte';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
   import CardInfo from '../../components/CardInfo.svelte';
