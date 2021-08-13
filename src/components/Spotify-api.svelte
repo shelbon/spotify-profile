@@ -80,18 +80,20 @@
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
-      }top/artists?time_range=${time_range}&limit=${limit}`,
+      }user/top/artists?time_range=${time_range}&limit=${limit}`,
     );
   };
   const fetchTopTracks = (time_range = 'long_term', limit = 50) => {
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
-      }top/tracks?time_range=${time_range}&limit=${limit}`,
+      }user/top/tracks?time_range=${time_range}&limit=${limit}`,
     );
   };
   const fetchPlaylists = () => {
-    return fetchData(`${import.meta.env.VITE_API_BASE_URL}playlists`);
+    return fetchData(
+      `${import.meta.env.VITE_API_BASE_URL}user/playlists`,
+    );
   };
   const fetchUserInfo = () => {
     return fetchData(`${import.meta.env.VITE_API_BASE_URL}user`);
