@@ -44,7 +44,7 @@ launch dev server
 npm run dev
 ```
 
-or launch build and test production code
+or test production code
 
 ```shell
 npm run build && npm run serve
