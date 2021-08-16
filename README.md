@@ -36,6 +36,8 @@ The environment variables must have :
 
 VITE_API_BASE_URL= base url of the heroku server/
 
+## Locally
+
 launch dev server
 
 ```shell
@@ -47,3 +49,7 @@ or launch build and test production code
 ```shell
 npm run build && npm run serve
 ```
+
+## On Netlify
+
+<a alt="deploy to  netlify" href="https://app.netlify.com/start/deploy?repository=https://github.com/shelbon/spotify-profile#NODE_VERSION=16.4.1&NPM_VERSION=7.19.1"><img src="https://www.netlify.com/img/deploy/button.svg"/></a>

@@ -3,3 +3,6 @@ from = "/*"
 to = "/index.html"
 status = 200
 force = false
+[template]
+[template.environment]
+VITE_API_BASE_URL='set url to heroku base url with trailing slash'
