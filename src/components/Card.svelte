@@ -15,7 +15,7 @@
   <a href={$url(`/${baseUrlLink}/${id}`)}>
     <img class="image" src={image.url} alt={`${baseUrlLink} card`} />
     <p class="name">{name}</p>
-    {#if artists.length > 0}
+    {#if typeof artists !== 'undefined' && artists.length > 0}
       <span class="artist-name"> {getArtistsName(artists)} </span>
     {/if}
   </a>
