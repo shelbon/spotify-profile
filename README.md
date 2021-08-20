@@ -1,6 +1,6 @@
 # Spotify profile App
 
-A web app for vizualizing personalized data from spotify.[live version](https://spotifile.netlify.app)
+A web app for vizualizing personalized data from spotify. [live version](https://spotifile.netlify.app)
 
 [![svelte](https://img.shields.io/badge/svelte-3.42.1-61dafb)](https://svelte.dev/)
 [![routify](https://img.shields.io/badge/routify-2.18.3-61dafb)](https://routify.dev)
@@ -10,27 +10,27 @@ A web app for vizualizing personalized data from spotify.[live version](https://
 A Fully responsive web app
 Build with:
 
-- [svelte](https://svelte.dev/)
-- routing with [routify](https://routify.dev/)
-- use a [fastify proxy server](https://github.com/shelbon/reverse-proxy-spotify-profile) for masking api credentials to the user's web browser.
+- [Svelte](https://svelte.dev/)
+- Routing with [routify](https://routify.dev/)
+- Use a [fastify proxy server](https://github.com/shelbon/reverse-proxy-spotify-profile) for masking api credentials to the user's web browser.
 
 ## Features
 
 - Your most favorite artists of all time.
-- your most listened tracks
+- Your most listened tracks
 - What constitutes your favorite songs (is it danceable, happy/sad and more).
-- your playlist
+- Your playlist
 
 ## Launch
 
 ### Prerequisites
 
 - Have a spotify account,heroku account.
-- register the application in the [dashboard](https://developer.spotify.com/dashboard),tutorial is [there](https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app).
-- download the [proxy server github project](https://github.com/shelbon/reverse-proxy-spotify-profile)
+- Register the application in the [dashboard](https://developer.spotify.com/dashboard),tutorial is [there](https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app).
+- Download the [proxy server github project](https://github.com/shelbon/reverse-proxy-spotify-profile).
 - After cloning the project you need to run `npm install`.
 
-Create a .env file in root directory
+Create a .env file in root directory.
 
 The environment variables must have :
 
@@ -38,13 +38,13 @@ VITE_API_BASE_URL= base url of the heroku server/
 
 ## Locally
 
-launch dev server
+Launch dev server
 
 ```shell
 npm run dev
 ```
 
-or test production code
+or test production code.
 
 ```shell
 npm run build && npm run serve
