@@ -1,9 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { params } from '@roxi/routify';
   import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
@@ -13,14 +10,10 @@
   import CardInfo from '../../components/CardInfo.svelte';
   let id = $params.id;
   const { fetchPlaylist } = getContext(apiEndpointsNames.playlist);
-  const queryClient = useQueryClient();
   const playlistQuery = useQuery(
     [apiEndpointsNames.playlist, id],
     () => fetchPlaylist(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.playlist),
-      retry: 1,
       enabled: !!id,
     },
   );

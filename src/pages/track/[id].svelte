@@ -2,10 +2,7 @@
  -->
 <script>
   import { getContext } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { params } from '@roxi/routify';
   import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
@@ -19,14 +16,10 @@
     apiEndpointsNames.trackFeature,
   );
   const { fetchTrack } = getContext(apiEndpointsNames.track);
-  const queryClient = useQueryClient();
   const trackFeatureQuery = useQuery(
     [apiEndpointsNames.trackFeature, id],
     () => fetchTrackFeature(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.trackFeature),
-      retry: 1,
       enabled: !!id,
     },
   );
@@ -34,9 +27,6 @@
     [apiEndpointsNames.track, id],
     () => fetchTrack(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.track),
-      retry: 1,
       enabled: !!id,
     },
   );

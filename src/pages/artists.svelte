@@ -1,9 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
@@ -13,15 +10,9 @@
   const { fetchTopArtists } = getContext(
     apiEndpointsNames.topArtists,
   );
-  const queryClient = useQueryClient();
   const topArtistsQuery = useQuery(
     apiEndpointsNames.topArtists,
     fetchTopArtists,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.topArtists),
-      staleTime: 50000,
-    },
   );
 </script>
 

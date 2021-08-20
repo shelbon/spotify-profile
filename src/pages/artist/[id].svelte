@@ -29,16 +29,12 @@
   );
   $: title = 'Artist page';
 
-  const queryClient = useQueryClient();
   const isFetching = useIsFetching();
   $: id = $params.id;
   const artistInfoQuery = useQuery(
     [apiEndpointsNames.artist, id],
     () => fetchArtist(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.artist),
-      retry: 1,
       enabled: !!id,
     },
   );
@@ -55,9 +51,6 @@
     [apiEndpointsNames.artistTopTracks, id],
     () => fetchArtistTopTracks(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.artistTopTracks),
-      retry: 1,
       enabled: !!id,
     },
   );
@@ -74,9 +67,6 @@
     [apiEndpointsNames.artistAlbum, id],
     () => fetchArtistAlbum(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.artistAlbum),
-      retry: 1,
       enabled: !!id,
     },
   );
@@ -93,11 +83,6 @@
     [apiEndpointsNames.artistRelatedArtists, id],
     () => fetchArtistRelatedArtists(id),
     {
-      initialData: () =>
-        queryClient.getQueryData(
-          apiEndpointsNames.artistRelatedArtists,
-        ),
-      retry: 1,
       enabled: !!id,
     },
   );

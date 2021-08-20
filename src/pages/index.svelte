@@ -1,10 +1,7 @@
 <script>
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import { getContext } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import UserInfo from '../components/UserInfo.svelte';
@@ -24,58 +21,26 @@
   const { fetchFollowedArtists } = getContext(
     apiEndpointsNames.userFollowedArtists,
   );
-  const queryClient = useQueryClient();
 
   const userInfoQuery = useQuery(
     apiEndpointsNames.userInfo,
     fetchUserInfo,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.userInfo),
-      staleTime: 50000,
-    },
   );
   const topTracksQuery = useQuery(
     apiEndpointsNames.topTracks,
     fetchTopTracks,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.topTracks),
-      staleTime: 50000,
-      retry: 1,
-    },
   );
   const topArtistsQuery = useQuery(
     apiEndpointsNames.topArtists,
     fetchTopArtists,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.topArtists),
-      staleTime: 50000,
-      retry: 1,
-    },
   );
   const followedArtistsQuery = useQuery(
     apiEndpointsNames.userFollowedArtists,
     fetchFollowedArtists,
-    {
-      initialData: () =>
-        queryClient.getQueryData(
-          apiEndpointsNames.userFollowedArtists,
-        ),
-      staleTime: 50000,
-      retry: 1,
-    },
   );
   const userPlaylistsQuery = useQuery(
     apiEndpointsNames.playlists,
     fetchPlaylists,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.playlists),
-      staleTime: 50000,
-      retry: 1,
-    },
   );
   $: errorData = new Set();
   $: if (!$userInfoQuery.isLoading) {

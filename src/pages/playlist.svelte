@@ -1,24 +1,15 @@
 <script>
   import { getContext } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { apiEndpointsNames } from '../components/Spotify-api.svelte';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
   import CardGrid from '../components/CardGrid.svelte';
   const { fetchPlaylists } = getContext(apiEndpointsNames.playlists);
-  const queryClient = useQueryClient();
   const playlistsQuery = useQuery(
     apiEndpointsNames.playlists,
     fetchPlaylists,
-    {
-      initialData: () =>
-        queryClient.getQueryData(apiEndpointsNames.playlists),
-      staleTime: 50000,
-    },
   );
 </script>
 
