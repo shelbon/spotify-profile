@@ -18,4 +18,14 @@ function isEmptyObject(obj) {
     (Object.keys(obj).length === 0 && obj.constructor === Object)
   );
 }
-export { getHashParams, isObject, isEmptyObject };
+function cookieStringToJson(cookie) {
+  let json = {};
+  cookie.split(/\s*;\s*/).forEach(function (pair) {
+    pair = pair.split(/\s*=\s*/);
+    let name = decodeURIComponent(pair[0]);
+    let value = decodeURIComponent(pair.splice(1).join('='));
+    json[name] = value;
+  });
+  return json;
+}
+export { getHashParams, isObject, isEmptyObject, cookieStringToJson };
