@@ -1,10 +1,6 @@
 <script>
-  import { getContext, onMount } from 'svelte';
-  import {
-    useQuery,
-    useQueryClient,
-    useIsFetching,
-  } from '@sveltestack/svelte-query';
+  import { getContext } from 'svelte';
+  import { useQuery } from '@sveltestack/svelte-query';
   import { Wave } from 'svelte-loading-spinners';
   import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
@@ -29,7 +25,6 @@
   );
   $: title = 'Artist page';
 
-  const isFetching = useIsFetching();
   $: id = $params.id;
   const artistInfoQuery = useQuery(
     [apiEndpointsNames.artist, id],
@@ -176,7 +171,7 @@
 
 <svelte:head><title>{title}</title></svelte:head>
 
-{#if $isFetching}
+{#if $artistInfoQuery.isLoading || $artistTopTracksQuery.isLoading || $artistRelatedArtistsQuery.isLoading || artistAlbumQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
 {:else if errorData.size > 0}
   <QueryErrorMessage data={errorData} />
