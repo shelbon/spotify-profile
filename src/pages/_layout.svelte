@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { cookieStringToJson, getHashParams } from '../utils';
+  import { getHashParams } from '../utils';
   import SpotifyApi from '../components/Spotify-api.svelte';
   import Navigation from '../components/Navigation.svelte';
   import NavigationItem from '../components/NavigationItem.svelte';
@@ -13,11 +13,11 @@
 
   let isLogin = () => {
     let urlparams = getHashParams();
-    const sessionId = cookieStringToJson(document.cookie).sessionId;
-    console.table(sessionId);
-    return (
-      urlparams.isLogin === 'true' && typeof sessionId !== undefined
-    );
+    const isLogin = urlparams.isLogin === 'true';
+    if (isLogin) {
+      return true;
+    }
+    return false;
   };
   let localStorage = window.localStorage;
   $: isAuthenticated = undefined;
