@@ -4,6 +4,7 @@ to = "/index.html"
 status = 200
 force = false
 [build]
+command=''
  publish="dist/"
 [template]
 [template.environment]
