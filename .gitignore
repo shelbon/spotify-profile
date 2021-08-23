@@ -13,3 +13,8 @@ npm-debug.log*
 
 .vscode/
 
+/dist/
+ 
+# Local Netlify folder
+.netlify
+.routify
