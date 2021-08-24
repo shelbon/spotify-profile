@@ -55,7 +55,7 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
-    background-color: #303030;
+
     margin-bottom: var(--nav-height);
     min-height: 100vh;
   }
