@@ -1,9 +1,9 @@
 <script context="module">
   export const apiEndpointsNames = {
     userInfo: 'user info',
-    topArtists: 'top artists',
-    topTracks: 'top tracks',
-    playlists: 'playlists',
+    userTopArtists: ' user top artists',
+    userTopTracks: ' user top tracks',
+    userPlaylists: 'user playlists',
     userFollowedArtists: 'user followed artists',
     artist: 'Artist',
     artistTopTracks: 'Artist top track',
@@ -117,7 +117,7 @@
     return fetch(url, {
       method: method,
       headers: {
-        Authorization: `Bearer ${token} `,
+        Authorization: `Bearer ${token}`,
       },
       ...opts,
     })
@@ -160,10 +160,15 @@
             'Sorry ,an unknow error happend please retry or contact technical service at xxxx@xxx.fr',
           );
         }
+
         throw new Error(err);
       });
   };
-  const fetchTopArtists = (time_range = 'long_term', limit = 50) => {
+
+  const fetchUserTopArtists = (
+    time_range = 'long_term',
+    limit = 50,
+  ) => {
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
@@ -177,14 +182,17 @@
       }refresh_token?refresh_token=${getLocalRefreshToken()}`,
     );
   };
-  const fetchTopTracks = (time_range = 'long_term', limit = 50) => {
+  const fetchUserTopTracks = (
+    time_range = 'long_term',
+    limit = 50,
+  ) => {
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
       }me/top/tracks?time_range=${time_range}&limit=${limit}`,
     );
   };
-  const fetchPlaylists = () => {
+  const fetchUserPlaylists = () => {
     return fetchData(
       `${import.meta.env.VITE_API_BASE_URL}me/playlists`,
     );
@@ -192,7 +200,7 @@
   const fetchUserInfo = () => {
     return fetchData(`${import.meta.env.VITE_API_BASE_URL}me`);
   };
-  const fetchFollowedArtists = () => {
+  const fetchUserFollowedArtists = () => {
     return fetchData(
       `${import.meta.env.VITE_API_BASE_URL}me/following?type=artist`,
     );
@@ -242,19 +250,19 @@
     );
   };
   setContext(apiEndpointsNames.userFollowedArtists, {
-    fetchFollowedArtists: () => fetchFollowedArtists(),
+    fetchUserFollowedArtists: () => fetchUserFollowedArtists(),
   });
   setContext(apiEndpointsNames.userInfo, {
     fetchUserInfo: () => fetchUserInfo(),
   });
-  setContext(apiEndpointsNames.topArtists, {
-    fetchTopArtists: () => fetchTopArtists(),
+  setContext(apiEndpointsNames.userTopArtists, {
+    fetchUserTopArtists: () => fetchUserTopArtists(),
   });
-  setContext(apiEndpointsNames.playlists, {
-    fetchPlaylists: () => fetchPlaylists(),
+  setContext(apiEndpointsNames.userPlaylists, {
+    fetchUserPlaylists: () => fetchUserPlaylists(),
   });
-  setContext(apiEndpointsNames.topTracks, {
-    fetchTopTracks: () => fetchTopTracks(),
+  setContext(apiEndpointsNames.userTopTracks, {
+    fetchUserTopTracks: () => fetchUserTopTracks(),
   });
   setContext(apiEndpointsNames.artist, {
     fetchArtist: (id) => fetchArtist(id),

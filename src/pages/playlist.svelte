@@ -6,10 +6,12 @@
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
   import CardGrid from '../components/CardGrid.svelte';
-  const { fetchPlaylists } = getContext(apiEndpointsNames.playlists);
+  const { fetchUserPlaylists } = getContext(
+    apiEndpointsNames.userPlaylists,
+  );
   const playlistsQuery = useQuery(
-    apiEndpointsNames.playlists,
-    fetchPlaylists,
+    apiEndpointsNames.userPlaylists,
+    fetchUserPlaylists,
   );
 </script>
 
