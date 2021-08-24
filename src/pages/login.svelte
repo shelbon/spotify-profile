@@ -31,7 +31,7 @@
     </h1>
     <a
       class="btn-log-in"
-      href="{import.meta.env.VITE_API_BASE_URL}spotify/login/"
+      href="{import.meta.env.VITE_SERVER_URL}spotify/login/"
       referrerpolicy="origin"><p>Log in to your spotify account</p></a
     >
   </div>

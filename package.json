@@ -31,10 +31,10 @@
     "svelte": "3.42.2",
     "svelte-loading-spinners": "0.1.7",
     "vite": "2.5.0"
- 
   },
   "dependencies": {
     "@sveltestack/svelte-query": "1.4.1",
+    "luxon": "^2.0.2",
     "svelte-chartjs": "1.0.1"
   },
   "browserslist": [

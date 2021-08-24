@@ -21,8 +21,11 @@
     QueryClient,
     QueryClientProvider,
   } from '@sveltestack/svelte-query';
-  import { isObject } from '../utils';
-  import { setContext } from 'svelte';
+  import { getHashParams, isObject } from '../utils';
+  import { onMount, setContext } from 'svelte';
+  import { DateTime } from 'luxon';
+  import { redirect } from '@roxi/routify';
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -30,10 +33,93 @@
       },
     },
   });
-  const fetchData = (url, method = 'GET') => {
+  const EXPIRATION_TIME = 3600 * 1000;
+  const localStorage = window.localStorage;
+  let token;
+  const setLocalAccessToken = (token) => {
+    setTokenTimestamp();
+
+    localStorage.setItem('spotify_access_token', token);
+  };
+  const setTokenTimestamp = () => {
+    localStorage.setItem(
+      'spotify_token_timestamp',
+      DateTime.now().toISO(),
+    );
+  };
+  const setLocalRefreshToken = (token) => {
+    localStorage.setItem('spotify_refresh_token', token);
+  };
+  const getLocalRefreshToken = () => {
+    return localStorage.getItem('spotify_refresh_token');
+  };
+  const getLocalAccessToken = () => {
+    return localStorage.getItem('spotify_access_token');
+  };
+  const getTokenTimestamp = () => {
+    return DateTime.fromISO(
+      localStorage.getItem('spotify_token_timestamp'),
+    );
+  };
+  const getAccessToken = () => {
+    try {
+      const { error, access_token, refresh_token } = getHashParams();
+
+      if (error) {
+        console.error(error);
+        refreshAccessToken();
+      }
+
+      if (
+        DateTime.now().diff(getTokenTimestamp()).milliseconds >
+        EXPIRATION_TIME
+      ) {
+        refreshAccessToken();
+      }
+      const localAccessToken = getLocalAccessToken();
+      const localRefreshToken = getLocalRefreshToken();
+
+      if (
+        localAccessToken === 'undefined' &&
+        typeof access_token === 'undefined'
+      ) {
+        $redirect('/login');
+      }
+      // If there is no REFRESH token in local storage, set it as `refresh_token` from params
+      if (!localRefreshToken || localRefreshToken === 'undefined') {
+        setLocalRefreshToken(refresh_token);
+      }
+
+      // If there is no ACCESS token in local storage, set it and return `access_token` from params
+      if (!localAccessToken || localAccessToken === 'undefined') {
+        setLocalAccessToken(access_token);
+        return access_token;
+      }
+      return localAccessToken;
+    } catch (e) {
+      $redirect('/login');
+    }
+  };
+  const refreshAccessToken = () => {
+    fetchNewAccessToken().then((data) => {
+      const { access_token } = data;
+
+      setLocalAccessToken(access_token);
+
+      return;
+    });
+  };
+  onMount(() => {
+    token = getAccessToken();
+    setInterval(() => refreshAccessToken(), EXPIRATION_TIME);
+  });
+  const fetchData = (url, opts = {}, method = 'GET') => {
     return fetch(url, {
       method: method,
-      credentials: 'include',
+      headers: {
+        Authorization: `Bearer ${token} `,
+      },
+      ...opts,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -74,68 +160,80 @@
             'Sorry ,an unknow error happend please retry or contact technical service at xxxx@xxx.fr',
           );
         }
+        throw new Error(err);
       });
   };
   const fetchTopArtists = (time_range = 'long_term', limit = 50) => {
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
-      }user/top/artists?time_range=${time_range}&limit=${limit}`,
+      }me/top/artists?time_range=${time_range}&limit=${limit}`,
+    );
+  };
+  const fetchNewAccessToken = () => {
+    return fetchData(
+      `${
+        import.meta.env.VITE_SERVER_URL
+      }refresh_token?refresh_token=${getLocalRefreshToken()}`,
     );
   };
   const fetchTopTracks = (time_range = 'long_term', limit = 50) => {
     return fetchData(
       `${
         import.meta.env.VITE_API_BASE_URL
-      }user/top/tracks?time_range=${time_range}&limit=${limit}`,
+      }me/top/tracks?time_range=${time_range}&limit=${limit}`,
     );
   };
   const fetchPlaylists = () => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}user/playlists`,
+      `${import.meta.env.VITE_API_BASE_URL}me/playlists`,
     );
   };
   const fetchUserInfo = () => {
-    return fetchData(`${import.meta.env.VITE_API_BASE_URL}user`);
+    return fetchData(`${import.meta.env.VITE_API_BASE_URL}me`);
   };
   const fetchFollowedArtists = () => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}user/following`,
+      `${import.meta.env.VITE_API_BASE_URL}me/following?type=artist`,
     );
   };
   const fetchArtist = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}artist/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}artists/${id}`,
     );
   };
   const fetchArtistAlbum = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/album`,
+      `${import.meta.env.VITE_API_BASE_URL}artists/${id}/albums`,
     );
   };
   const fetchPlaylist = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}playlist/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}playlists/${id}`,
     );
   };
   const fetchArtistTopTracks = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/top`,
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }artists/${id}/top-tracks?country=from_token`,
     );
   };
   const fetchArtistRelatedArtists = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}artist/${id}/related`,
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }artists/${id}/related-artists`,
     );
   };
   const fetchAlbum = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}album/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}albums/${id}`,
     );
   };
   const fetchTrack = (id) => {
     return fetchData(
-      `${import.meta.env.VITE_API_BASE_URL}track/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}tracks/${id}`,
     );
   };
   const fetchTrackFeature = (id) => {
@@ -186,6 +284,7 @@
 
 <!--got rid of  error message "... received an unexpected slot "default"-->
 {#if false}<slot />{/if}
+
 <slot name="navigation">no navigation was provided</slot>
 <QueryClientProvider client={queryClient}>
   <slot name="content">no content was provided</slot>
