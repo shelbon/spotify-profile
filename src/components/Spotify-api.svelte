@@ -21,11 +21,12 @@
     QueryClient,
     QueryClientProvider,
   } from '@sveltestack/svelte-query';
-  import { getHashParams, isObject } from '../utils';
-  import { onMount, setContext } from 'svelte';
+  import { getHashParams, isObject, STATE } from '../utils';
+  import { onMount, setContext, tick } from 'svelte';
   import { DateTime } from 'luxon';
   import { redirect } from '@roxi/routify';
 
+  import { Wave } from 'svelte-loading-spinners';
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
@@ -35,10 +36,13 @@
   });
   const EXPIRATION_TIME = 3600 * 1000;
   const localStorage = window.localStorage;
-  let token;
+  $: token = {
+    value: '',
+    state: STATE.expired,
+  };
+
   const setLocalAccessToken = (token) => {
     setTokenTimestamp();
-
     localStorage.setItem('spotify_access_token', token);
   };
   const setTokenTimestamp = () => {
@@ -74,6 +78,8 @@
         DateTime.now().diff(getTokenTimestamp()).milliseconds >
         EXPIRATION_TIME
       ) {
+        token.state = STATE.refreshing;
+
         refreshAccessToken();
       }
       const localAccessToken = getLocalAccessToken();
@@ -100,24 +106,39 @@
       $redirect('/login');
     }
   };
-  const refreshAccessToken = () => {
-    fetchNewAccessToken().then((data) => {
-      const { access_token } = data;
+  const refreshAccessToken = async () => {
+    const data = await fetchNewAccessToken();
+    const { access_token } = data;
 
-      setLocalAccessToken(access_token);
-
-      return;
-    });
+    setLocalAccessToken(access_token);
+    window.location.reload();
+    return;
   };
+
   onMount(() => {
-    token = getAccessToken();
-    setInterval(() => refreshAccessToken(), EXPIRATION_TIME);
+    token.value = getAccessToken();
+    tick().then(() => {
+      setTimeout(() => {
+        token.state = STATE.uptodate;
+      }, 3000);
+    });
+
+    setTimeout(() => {
+      token.value = getAccessToken();
+
+      tick().then(() => {
+        setTimeout(() => {
+          token.state = STATE.uptodate;
+        }, 3000);
+      });
+    }, EXPIRATION_TIME);
   });
+
   const fetchData = (url, opts = {}, method = 'GET') => {
     return fetch(url, {
       method: method,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token.value}`,
       },
       ...opts,
     })
@@ -293,7 +314,19 @@
 <!--got rid of  error message "... received an unexpected slot "default"-->
 {#if false}<slot />{/if}
 
-<slot name="navigation">no navigation was provided</slot>
-<QueryClientProvider client={queryClient}>
-  <slot name="content">no content was provided</slot>
-</QueryClientProvider>
+{#if token.state === STATE.uptodate}<QueryClientProvider
+    client={queryClient}
+  >
+    <slot name="content">no content was provided</slot>
+  </QueryClientProvider>
+{:else}
+  <div
+    style="display: flex;
+flex-flow: column;
+justify-content: center;
+margin-bottom: var(--nav-height);
+min-height: 100vh;"
+  >
+    <Wave size="60" color="#1db954" unit="px" duration="1s" />
+  </div>
+{/if}
