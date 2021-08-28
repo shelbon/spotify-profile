@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
   import SpotifyApi from '../components/Spotify-api.svelte';
   import Navigation from '../components/Navigation.svelte';
   import NavigationItem from '../components/NavigationItem.svelte';
@@ -14,37 +13,35 @@
   }
 </script>
 
+<Navigation>
+  <NavigationItem
+    name="Profile"
+    destination="./index"
+    icon={bxUser}
+  />
+  <NavigationItem
+    name="Tracks"
+    destination="./tracks"
+    icon={bxMusic}
+  />
+  <NavigationItem
+    name="Playlist"
+    destination="./playlist"
+    icon={bxsPlaylist}
+  />
+  <NavigationItem
+    name="Artists"
+    destination="./artists"
+    icon={bxsMicrophoneAlt}
+  />
+  <NavigationItem
+    name="Log out"
+    destination={`login`}
+    icon={bxLogOut}
+    on:click={handleLogOutClick}
+  />
+</Navigation>
 <SpotifyApi>
-  <svelte:fragment slot="navigation">
-    <Navigation>
-      <NavigationItem
-        name="Profile"
-        destination="./index"
-        icon={bxUser}
-      />
-      <NavigationItem
-        name="Tracks"
-        destination="./tracks"
-        icon={bxMusic}
-      />
-      <NavigationItem
-        name="Playlist"
-        destination="./playlist"
-        icon={bxsPlaylist}
-      />
-      <NavigationItem
-        name="Artists"
-        destination="./artists"
-        icon={bxsMicrophoneAlt}
-      />
-      <NavigationItem
-        name="Log out"
-        destination={`login`}
-        icon={bxLogOut}
-        on:click={handleLogOutClick}
-      />
-    </Navigation>
-  </svelte:fragment>
   <main slot="content">
     <slot />
   </main>
@@ -55,7 +52,6 @@
     display: flex;
     flex-flow: column;
     justify-content: center;
-    background-color: #303030;
     margin-bottom: var(--nav-height);
     min-height: 100vh;
   }
