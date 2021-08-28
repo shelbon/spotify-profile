@@ -18,5 +18,9 @@ function isEmptyObject(obj) {
     (Object.keys(obj).length === 0 && obj.constructor === Object)
   );
 }
-
-export { getHashParams, isObject, isEmptyObject };
+const STATE = {
+  refreshing: 'refreshing',
+  uptodate: 'uptodate',
+  expired: 'expired',
+};
+export { getHashParams, isObject, isEmptyObject, STATE };

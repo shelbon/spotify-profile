@@ -7,12 +7,12 @@
   import PageSection from '../components/PageSection.svelte';
   import CardGrid from '../components/CardGrid.svelte';
 
-  const { fetchTopArtists } = getContext(
-    apiEndpointsNames.topArtists,
+  const { fetchUserTopArtists } = getContext(
+    apiEndpointsNames.userTopArtists,
   );
   const topArtistsQuery = useQuery(
-    apiEndpointsNames.topArtists,
-    fetchTopArtists,
+    apiEndpointsNames.userTopArtists,
+    fetchUserTopArtists,
   );
 </script>
 

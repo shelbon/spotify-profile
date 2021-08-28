@@ -6,10 +6,12 @@
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
   import CardGrid from '../components/CardGrid.svelte';
-  const { fetchTopTracks } = getContext(apiEndpointsNames.topTracks);
+  const { fetchUserTopTracks } = getContext(
+    apiEndpointsNames.userTopTracks,
+  );
   const topTracksQuery = useQuery(
-    apiEndpointsNames.topTracks,
-    fetchTopTracks,
+    apiEndpointsNames.userTopTracks,
+    fetchUserTopTracks,
   );
 </script>
 
