@@ -35,7 +35,7 @@
   "dependencies": {
     "@sveltestack/svelte-query": "1.4.1",
     "luxon": "2.0.2",
-    "svelte-chartjs": "1.0.1"
+    "svelte-chartjs": "1.1.1"
   },
   "browserslist": [
     "defaults"
