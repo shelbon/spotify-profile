@@ -19,7 +19,7 @@
     "@iconify/svelte": "2.0.0",
     "@originjs/vite-plugin-commonjs": "1.0.0-beta7",
     "@roxi/routify": "2.18.3",
-    "@smui/card": "4.2.0",
+    "@smui/card": "5.0.1",
     "@sveltejs/vite-plugin-svelte": "1.0.0-next.19",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/svelte": "3.0.3",
