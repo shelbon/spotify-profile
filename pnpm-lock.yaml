@@ -18,14 +18,14 @@ specifiers:
   luxon: 2.5.2
   npm-run-all: 4.1.5
   svelte: 3.59.1
-  svelte-chartjs: 1.1.1
+  svelte-chartjs: 1.1.4
   svelte-loading-spinners: 0.1.7
   vite: 2.9.16
 
 dependencies:
   '@sveltestack/svelte-query': 1.4.1
   luxon: 2.5.2
-  svelte-chartjs: 1.1.1
+  svelte-chartjs: 1.1.4
 
 devDependencies:
   '@babel/preset-env': 7.22.5_@babel+core@7.18.13
@@ -5153,8 +5153,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-chartjs/1.1.1:
-    resolution: {integrity: sha512-pruCMGZd0e630a28ptyIf2MVQKvKiQ1KL7psHlUQhwhlvifJCKD/yQ/CRdsjkq3jZLRMN/DdB+HsKQXxoFoK7g==}
+  /svelte-chartjs/1.1.4:
+    resolution: {integrity: sha512-G+G3h1yDFKNTamwq1iDSK1nthStVpEKaCh8K17cUlMPRX1bFF14sK2kWNv0tPj+OGWDTJgDM3X18EU0o3/kH5Q==}
     dependencies:
       chart.js: 3.9.1
     dev: false
