@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/preset-env': 7.22.5
   '@iconify-icons/bx': 1.1.2
-  '@iconify/svelte': 2.0.0
+  '@iconify/svelte': 3.1.4
   '@originjs/vite-plugin-commonjs': 1.0.0-beta7
   '@roxi/routify': 2.18.12
   '@smui/card': 4.2.0
@@ -30,7 +30,7 @@ dependencies:
 devDependencies:
   '@babel/preset-env': 7.22.5_@babel+core@7.18.13
   '@iconify-icons/bx': 1.1.2
-  '@iconify/svelte': 2.0.0
+  '@iconify/svelte': 3.1.4_svelte@3.59.1
   '@originjs/vite-plugin-commonjs': 1.0.0-beta7
   '@roxi/routify': 2.18.12
   '@smui/card': 4.2.0
@@ -1499,8 +1499,17 @@ packages:
     resolution: {integrity: sha512-EHkRvCUiIq/2vcNZDSKv0NIj6vLDVN4zSOQiOcAMxze4amuZaoFjG/4c1V6ROcReYKmF2RQ/OHnCIjBwMT29LQ==}
     dev: true
 
-  /@iconify/svelte/2.0.0:
-    resolution: {integrity: sha512-zhuX8Rf0F8Xwv4xfZRt5s80hqFCSMtY9kZonqKpc9bPVNMDKBp6WFfu7VsJaSNI3mQAClY1Ff9zdRBxUVtt28Q==}
+  /@iconify/svelte/3.1.4_svelte@3.59.1:
+    resolution: {integrity: sha512-YDwQlN46ka8KPRayDb7TivmkAPizfTXi6BSRNqa1IV0+byA907n8JcgQafA7FD//pW5XCuuAhVx6uRbKTo+CfA==}
+    peerDependencies:
+      svelte: '*'
+    dependencies:
+      '@iconify/types': 2.0.0
+      svelte: 3.59.1
+    dev: true
+
+  /@iconify/types/2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
 
   /@istanbuljs/load-nyc-config/1.1.0:
