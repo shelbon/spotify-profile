@@ -4,7 +4,7 @@ specifiers:
   '@babel/preset-env': 7.22.5
   '@iconify-icons/bx': 1.1.2
   '@iconify/svelte': 3.1.4
-  '@originjs/vite-plugin-commonjs': 1.0.0-beta7
+  '@originjs/vite-plugin-commonjs': 1.0.3
   '@roxi/routify': 2.18.12
   '@smui/card': 4.2.0
   '@sveltejs/vite-plugin-svelte': 1.0.0-next.19
@@ -31,7 +31,7 @@ devDependencies:
   '@babel/preset-env': 7.22.5_@babel+core@7.18.13
   '@iconify-icons/bx': 1.1.2
   '@iconify/svelte': 3.1.4_svelte@3.59.1
-  '@originjs/vite-plugin-commonjs': 1.0.0-beta7
+  '@originjs/vite-plugin-commonjs': 1.0.3
   '@roxi/routify': 2.18.12
   '@smui/card': 4.2.0
   '@sveltejs/vite-plugin-svelte': 1.0.0-next.19_svelte@3.59.1+vite@2.9.16
@@ -1889,10 +1889,10 @@ packages:
       tslib: 2.3.1
     dev: true
 
-  /@originjs/vite-plugin-commonjs/1.0.0-beta7:
-    resolution: {integrity: sha512-RK23cjDGecT8g9YS7RAZdufbMCj1kjYejke3Wid3V/5ZL1z/hSqWC60648wIQ1tn1UWNiqrqBIsL7uht5xbBZg==}
+  /@originjs/vite-plugin-commonjs/1.0.3:
+    resolution: {integrity: sha512-KuEXeGPptM2lyxdIEJ4R11+5ztipHoE7hy8ClZt3PYaOVQ/pyngd2alaSrPnwyFeOW1UagRBaQ752aA1dTMdOQ==}
     dependencies:
-      esbuild: 0.12.29
+      esbuild: 0.14.54
     dev: true
 
   /@rollup/pluginutils/4.1.2:
@@ -3112,12 +3112,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /esbuild/0.12.29:
-    resolution: {integrity: sha512-w/XuoBCSwepyiZtIRsKsetiLDUVGPVw1E/R3VTFSecIy8UR7Cq3SOtwKHJMFoVqqVG36aGkzh4e8BvpO1Fdc7g==}
-    hasBin: true
-    requiresBuild: true
-    dev: true
 
   /esbuild/0.14.54:
     resolution: {integrity: sha512-Cy9llcy8DvET5uznocPyqL3BFRrFXSVqbgpMJ9Wz8oVjZlh/zUSNbPRbov0VX7VxN2JH1Oa0uNxZ7eLRb62pJA==}
