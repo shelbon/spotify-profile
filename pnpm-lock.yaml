@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/preset-env': 7.22.5
-  '@iconify-icons/bx': 1.1.2
+  '@iconify-icons/bx': 1.2.6
   '@iconify/svelte': 3.1.4
   '@originjs/vite-plugin-commonjs': 1.0.3
   '@roxi/routify': 2.18.12
@@ -29,7 +29,7 @@ dependencies:
 
 devDependencies:
   '@babel/preset-env': 7.22.5_@babel+core@7.18.13
-  '@iconify-icons/bx': 1.1.2
+  '@iconify-icons/bx': 1.2.6
   '@iconify/svelte': 3.1.4_svelte@3.59.1
   '@originjs/vite-plugin-commonjs': 1.0.3
   '@roxi/routify': 2.18.12
@@ -1509,8 +1509,10 @@ packages:
     dev: true
     optional: true
 
-  /@iconify-icons/bx/1.1.2:
-    resolution: {integrity: sha512-EHkRvCUiIq/2vcNZDSKv0NIj6vLDVN4zSOQiOcAMxze4amuZaoFjG/4c1V6ROcReYKmF2RQ/OHnCIjBwMT29LQ==}
+  /@iconify-icons/bx/1.2.6:
+    resolution: {integrity: sha512-D8Ns/AqQoJzTxfrlpRWfh53m/0Uh2bMjgvGlVrmBw+1HrNyCJgqEa6mo2KAtZ4xjvzHn0cjTOnu+R0KYq+RmSg==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/svelte/3.1.4_svelte@3.59.1:
