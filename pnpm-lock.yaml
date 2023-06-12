@@ -15,7 +15,7 @@ specifiers:
   babel-jest: 27.1.0
   jest: 27.1.0
   jest-transform-svelte: 2.1.1
-  luxon: 2.5.2
+  luxon: 3.3.0
   npm-run-all: 4.1.5
   svelte: 3.59.1
   svelte-chartjs: 1.1.4
@@ -24,7 +24,7 @@ specifiers:
 
 dependencies:
   '@sveltestack/svelte-query': 1.4.1
-  luxon: 2.5.2
+  luxon: 3.3.0
   svelte-chartjs: 1.1.4
 
 devDependencies:
@@ -4626,8 +4626,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /luxon/2.5.2:
-    resolution: {integrity: sha512-Yg7/RDp4nedqmLgyH0LwgGRvMEKVzKbUdkBYyCosbHgJ+kaOUx0qzSiSatVc3DFygnirTPYnMM2P5dg2uH1WvA==}
+  /luxon/3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
     engines: {node: '>=12'}
     dev: false
 
