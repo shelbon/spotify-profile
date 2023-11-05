@@ -41,8 +41,8 @@ devDependencies:
     specifier: 5.17.0
     version: 5.17.0
   '@testing-library/svelte':
-    specifier: 4.0.4
-    version: 4.0.4(svelte@4.2.2)
+    specifier: 4.0.5
+    version: 4.0.5(svelte@4.2.2)
   autoprefixer:
     specifier: 10.4.16
     version: 10.4.16(postcss@8.4.31)
@@ -2095,8 +2095,8 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/svelte@4.0.4(svelte@4.2.2):
-    resolution: {integrity: sha512-m5ExbO2fMZDR8J03DWXJrJ6untfIE6aDL00DpYbXLy1HwqnY+KxdDMCbx3OvCR5yi7Z6bFCV91dgetlWdeOEKw==}
+  /@testing-library/svelte@4.0.5(svelte@4.2.2):
+    resolution: {integrity: sha512-P7X3mpYv/My4hBZfxVxTFV5KcA+EoWfRCguWP7WQdYj6HMdg/L+LiwG4ocvLe+hupedrC7dwcy85JlxKplJp2g==}
     engines: {node: '>= 10'}
     peerDependencies:
       svelte: ^3 || ^4
