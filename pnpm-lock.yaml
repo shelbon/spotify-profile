@@ -23,8 +23,8 @@ devDependencies:
     specifier: 1.2.6
     version: 1.2.6
   '@iconify/svelte':
-    specifier: 3.1.5
-    version: 3.1.5(svelte@4.2.8)
+    specifier: 3.1.6
+    version: 3.1.6(svelte@4.2.8)
   '@originjs/vite-plugin-commonjs':
     specifier: 1.0.3
     version: 1.0.3
@@ -1505,8 +1505,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify/svelte@3.1.5(svelte@4.2.8):
-    resolution: {integrity: sha512-vAEmm0jpu4t9txIgKUhXc6FDrW42AyxKkgrh0P/YtWZwRmhYrcRxr05U71sVWD90uUWhKdivCwrCgtu73/iLvg==}
+  /@iconify/svelte@3.1.6(svelte@4.2.8):
+    resolution: {integrity: sha512-yLSrlkOx5J6xXU5GDLPBV/MdVBVEZhd36onfqSbxQobp1XBoWQbMPLNZyCAmTKCPnmzXSowGy79agl8FQ3kj6A==}
     peerDependencies:
       svelte: '*'
     dependencies:
