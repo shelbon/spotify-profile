@@ -22,7 +22,7 @@
     "@smui/card": "6.1.4",
     "@sveltejs/vite-plugin-svelte": "2.5.3",
     "@testing-library/jest-dom": "5.17.0",
-    "@testing-library/svelte": "4.1.0",
+    "@testing-library/svelte": "4.2.3",
     "autoprefixer": "10.4.19",
     "babel-jest": "29.7.0",
     "jest": "29.7.0",
