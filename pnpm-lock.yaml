@@ -12,8 +12,8 @@ importers:
         specifier: 1.6.0
         version: 1.6.0
       luxon:
-        specifier: 3.4.4
-        version: 3.4.4
+        specifier: 3.5.0
+        version: 3.5.0
       svelte-chartjs:
         specifier: 1.1.4
         version: 1.1.4
@@ -2226,8 +2226,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  luxon@3.4.4:
-    resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
+  luxon@3.5.0:
+    resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
     engines: {node: '>=12'}
 
   lz-string@1.5.0:
@@ -5791,7 +5791,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  luxon@3.4.4: {}
+  luxon@3.5.0: {}
 
   lz-string@1.5.0: {}
 
