@@ -26,7 +26,7 @@ importers:
         version: 1.2.6
       '@iconify/svelte':
         specifier: 3.1.6
-        version: 3.1.6(svelte@4.2.18)
+        version: 3.1.6(svelte@4.2.19)
       '@originjs/vite-plugin-commonjs':
         specifier: 1.0.3
         version: 1.0.3
@@ -35,16 +35,16 @@ importers:
         version: 2.18.17
       '@smui/card':
         specifier: 6.1.4
-        version: 6.1.4(svelte@4.2.18)(typescript@4.9.5)
+        version: 6.1.4(svelte@4.2.19)(typescript@4.9.5)
       '@sveltejs/vite-plugin-svelte':
         specifier: 2.5.3
-        version: 2.5.3(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0))
+        version: 2.5.3(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0))
       '@testing-library/jest-dom':
         specifier: 5.17.0
         version: 5.17.0
       '@testing-library/svelte':
         specifier: 4.2.3
-        version: 4.2.3(svelte@4.2.18)
+        version: 4.2.3(svelte@4.2.19)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.41)
@@ -56,13 +56,13 @@ importers:
         version: 29.7.0(@types/node@22.4.0)
       jest-transform-svelte:
         specifier: 2.1.1
-        version: 2.1.1(svelte@4.2.18)
+        version: 2.1.1(svelte@4.2.19)
       npm-run-all:
         specifier: 4.1.5
         version: 4.1.5
       svelte:
-        specifier: 4.2.18
-        version: 4.2.18
+        specifier: 4.2.19
+        version: 4.2.19
       svelte-loading-spinners:
         specifier: 0.3.4
         version: 0.3.4
@@ -2731,8 +2731,8 @@ packages:
       svelte: ^3.24
       typescript: ^4.1.2
 
-  svelte@4.2.18:
-    resolution: {integrity: sha512-d0FdzYIiAePqRJEb90WlJDkjUEx42xhivxN8muUBmfZnP+tzUgz12DJ2hRJi8sIHCME7jeK1PTMgKPSfTd8JrA==}
+  svelte@4.2.19:
+    resolution: {integrity: sha512-IY1rnGr6izd10B0A8LqsBfmlT5OILVuZ7XsI0vdGPEvuonFV7NYEUK4dAkm9Zg2q0Um92kYjTpS1CAP3Nh/KWw==}
     engines: {node: '>=16'}
 
   symbol-tree@3.2.4:
@@ -3887,10 +3887,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/svelte@3.1.6(svelte@4.2.18)':
+  '@iconify/svelte@3.1.6(svelte@4.2.19)':
     dependencies:
       '@iconify/types': 2.0.0
-      svelte: 4.2.18
+      svelte: 4.2.19
 
   '@iconify/types@2.0.0': {}
 
@@ -4238,80 +4238,80 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@smui/button@6.1.4(svelte@4.2.18)(typescript@4.9.5)':
+  '@smui/button@6.1.4(svelte@4.2.19)(typescript@4.9.5)':
     dependencies:
       '@material/button': 13.0.0
       '@material/elevation': 13.0.0
       '@material/feature-targeting': 13.0.0
       '@material/ripple': 13.0.0
       '@material/theme': 13.0.0
-      '@smui/common': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      '@smui/ripple': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      svelte2tsx: 0.5.23(svelte@4.2.18)(typescript@4.9.5)
+      '@smui/common': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      '@smui/ripple': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      svelte2tsx: 0.5.23(svelte@4.2.19)(typescript@4.9.5)
     transitivePeerDependencies:
       - svelte
       - typescript
 
-  '@smui/card@6.1.4(svelte@4.2.18)(typescript@4.9.5)':
+  '@smui/card@6.1.4(svelte@4.2.19)(typescript@4.9.5)':
     dependencies:
       '@material/card': 13.0.0
-      '@smui/button': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      '@smui/common': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      '@smui/icon-button': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      '@smui/ripple': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      svelte2tsx: 0.5.23(svelte@4.2.18)(typescript@4.9.5)
+      '@smui/button': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      '@smui/common': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      '@smui/icon-button': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      '@smui/ripple': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      svelte2tsx: 0.5.23(svelte@4.2.19)(typescript@4.9.5)
     transitivePeerDependencies:
       - svelte
       - typescript
 
-  '@smui/common@6.1.4(svelte@4.2.18)(typescript@4.9.5)':
+  '@smui/common@6.1.4(svelte@4.2.19)(typescript@4.9.5)':
     dependencies:
       '@material/dom': 13.0.0
       '@tsconfig/svelte': 3.0.0
-      svelte2tsx: 0.5.23(svelte@4.2.18)(typescript@4.9.5)
+      svelte2tsx: 0.5.23(svelte@4.2.19)(typescript@4.9.5)
     transitivePeerDependencies:
       - svelte
       - typescript
 
-  '@smui/icon-button@6.1.4(svelte@4.2.18)(typescript@4.9.5)':
+  '@smui/icon-button@6.1.4(svelte@4.2.19)(typescript@4.9.5)':
     dependencies:
       '@material/density': 13.0.0
       '@material/icon-button': 13.0.0
-      '@smui/common': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      '@smui/ripple': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      svelte2tsx: 0.5.23(svelte@4.2.18)(typescript@4.9.5)
+      '@smui/common': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      '@smui/ripple': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      svelte2tsx: 0.5.23(svelte@4.2.19)(typescript@4.9.5)
     transitivePeerDependencies:
       - svelte
       - typescript
 
-  '@smui/ripple@6.1.4(svelte@4.2.18)(typescript@4.9.5)':
+  '@smui/ripple@6.1.4(svelte@4.2.19)(typescript@4.9.5)':
     dependencies:
       '@material/dom': 13.0.0
       '@material/ripple': 13.0.0
-      '@smui/common': 6.1.4(svelte@4.2.18)(typescript@4.9.5)
-      svelte2tsx: 0.5.23(svelte@4.2.18)(typescript@4.9.5)
+      '@smui/common': 6.1.4(svelte@4.2.19)(typescript@4.9.5)
+      svelte2tsx: 0.5.23(svelte@4.2.19)(typescript@4.9.5)
     transitivePeerDependencies:
       - svelte
       - typescript
 
-  '@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0)))(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0))':
+  '@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0)))(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0))
+      '@sveltejs/vite-plugin-svelte': 2.5.3(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0))
       debug: 4.3.6
-      svelte: 4.2.18
+      svelte: 4.2.19
       vite: 4.5.3(@types/node@22.4.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0))':
+  '@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 1.0.4(@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0)))(svelte@4.2.18)(vite@4.5.3(@types/node@22.4.0))
+      '@sveltejs/vite-plugin-svelte-inspector': 1.0.4(@sveltejs/vite-plugin-svelte@2.5.3(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0)))(svelte@4.2.19)(vite@4.5.3(@types/node@22.4.0))
       debug: 4.3.6
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.11
-      svelte: 4.2.18
-      svelte-hmr: 0.15.3(svelte@4.2.18)
+      svelte: 4.2.19
+      svelte-hmr: 0.15.3(svelte@4.2.19)
       vite: 4.5.3(@types/node@22.4.0)
       vitefu: 0.2.5(vite@4.5.3(@types/node@22.4.0))
     transitivePeerDependencies:
@@ -4342,10 +4342,10 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/svelte@4.2.3(svelte@4.2.18)':
+  '@testing-library/svelte@4.2.3(svelte@4.2.19)':
     dependencies:
       '@testing-library/dom': 9.3.4
-      svelte: 4.2.18
+      svelte: 4.2.19
 
   '@tootallnate/once@1.1.2': {}
 
@@ -5655,10 +5655,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-transform-svelte@2.1.1(svelte@4.2.18):
+  jest-transform-svelte@2.1.1(svelte@4.2.19):
     dependencies:
       deasync: 0.1.30
-      svelte: 4.2.18
+      svelte: 4.2.19
 
   jest-util@29.7.0:
     dependencies:
@@ -6268,20 +6268,20 @@ snapshots:
     dependencies:
       chart.js: 3.9.1
 
-  svelte-hmr@0.15.3(svelte@4.2.18):
+  svelte-hmr@0.15.3(svelte@4.2.19):
     dependencies:
-      svelte: 4.2.18
+      svelte: 4.2.19
 
   svelte-loading-spinners@0.3.4: {}
 
-  svelte2tsx@0.5.23(svelte@4.2.18)(typescript@4.9.5):
+  svelte2tsx@0.5.23(svelte@4.2.19)(typescript@4.9.5):
     dependencies:
       dedent-js: 1.0.1
       pascal-case: 3.1.2
-      svelte: 4.2.18
+      svelte: 4.2.19
       typescript: 4.9.5
 
-  svelte@4.2.18:
+  svelte@4.2.19:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@jridgewell/sourcemap-codec': 1.5.0
