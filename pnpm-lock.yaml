@@ -25,8 +25,8 @@ importers:
         specifier: 1.2.6
         version: 1.2.6
       '@iconify/svelte':
-        specifier: 3.1.6
-        version: 3.1.6(svelte@4.2.19)
+        specifier: 4.0.2
+        version: 4.0.2(svelte@4.2.19)
       '@originjs/vite-plugin-commonjs':
         specifier: 1.0.3
         version: 1.0.3
@@ -835,10 +835,10 @@ packages:
   '@iconify-icons/bx@1.2.6':
     resolution: {integrity: sha512-D8Ns/AqQoJzTxfrlpRWfh53m/0Uh2bMjgvGlVrmBw+1HrNyCJgqEa6mo2KAtZ4xjvzHn0cjTOnu+R0KYq+RmSg==}
 
-  '@iconify/svelte@3.1.6':
-    resolution: {integrity: sha512-yLSrlkOx5J6xXU5GDLPBV/MdVBVEZhd36onfqSbxQobp1XBoWQbMPLNZyCAmTKCPnmzXSowGy79agl8FQ3kj6A==}
+  '@iconify/svelte@4.0.2':
+    resolution: {integrity: sha512-6BSrU85FzGfhQD3bTXpnkCCvBAglEt8T9QednVnXAYm4C+d3464y+pYMzhQNJm5mPId2cuiw+2wXlDflXllHDw==}
     peerDependencies:
-      svelte: '*'
+      svelte: '>4.0.0'
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3887,7 +3887,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/svelte@3.1.6(svelte@4.2.19)':
+  '@iconify/svelte@4.0.2(svelte@4.2.19)':
     dependencies:
       '@iconify/types': 2.0.0
       svelte: 4.2.19
