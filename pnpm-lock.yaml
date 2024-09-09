@@ -31,8 +31,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3
       '@roxi/routify':
-        specifier: 2.18.17
-        version: 2.18.17
+        specifier: 2.18.18
+        version: 2.18.18
       '@smui/card':
         specifier: 6.1.4
         version: 6.1.4(svelte@4.2.19)(typescript@4.9.5)
@@ -963,8 +963,8 @@ packages:
   '@originjs/vite-plugin-commonjs@1.0.3':
     resolution: {integrity: sha512-KuEXeGPptM2lyxdIEJ4R11+5ztipHoE7hy8ClZt3PYaOVQ/pyngd2alaSrPnwyFeOW1UagRBaQ752aA1dTMdOQ==}
 
-  '@roxi/routify@2.18.17':
-    resolution: {integrity: sha512-YS0n4v0zAAy+TXaeg6MhUD70txXAurtUmQFVhI6YTCg+MvDmy6sqGJ8KH4bAnb2dqEds0aa9pWz5OmlVCp426w==}
+  '@roxi/routify@2.18.18':
+    resolution: {integrity: sha512-daCBABx9Qv7JskApuKKrh6u+sXtIVxp9f8R7y07q6/gumGuIYH43V2As3ho29q9mAnorjP/G7REZ4+sflZKdPw==}
     hasBin: true
 
   '@roxi/ssr@0.2.1':
@@ -4134,7 +4134,7 @@ snapshots:
     dependencies:
       esbuild: 0.14.54
 
-  '@roxi/routify@2.18.17':
+  '@roxi/routify@2.18.18':
     dependencies:
       '@roxi/ssr': 0.2.1
       '@types/node': 12.20.55
