@@ -30,7 +30,7 @@
     "npm-run-all": "4.1.5",
     "svelte": "4.2.19",
     "svelte-loading-spinners": "0.3.4",
-    "vite": "4.5.5"
+    "vite": "5.4.10"
   },
   "dependencies": {
     "@sveltestack/svelte-query": "1.6.0",
