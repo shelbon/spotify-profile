@@ -12,7 +12,7 @@ Build with:
 
 - [Svelte](https://svelte.dev/)
 - Routing with [routify](https://routify.dev/)
-- Use a [fastify proxy server](https://github.com/shelbon/reverse-proxy-spotify-profile) for masking api credentials to the user's web browser.
+- Use a [fastify  server](https://github.com/shelbon/reverse-proxy-spotify-profile) for login with the spotify api and get required token 
 
 ## Features
 
@@ -27,14 +27,16 @@ Build with:
 
 - Have a spotify account,heroku account.
 - Register the application in the [dashboard](https://developer.spotify.com/dashboard),tutorial is [there](https://developer.spotify.com/documentation/general/guides/app-settings/#register-your-app).
-- Download the [proxy server github project](https://github.com/shelbon/reverse-proxy-spotify-profile).
+- Download the [fastify server ](https://github.com/shelbon/server-spotify-profile).
 - After cloning the project you need to run `npm install`.
 
 Create a .env file in root directory.
 
 The environment variables must have :
 
-VITE_API_BASE_URL= base url of the heroku server/
+VITE_API_BASE_URL= base url of the api  e.g.,api.com/
+
+VITE_API_SERVER_URL= base url of the heroku server e.g.,server.com/
 
 ## Locally
 
