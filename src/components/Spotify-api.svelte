@@ -24,7 +24,7 @@
   import { getHashParams, isObject, STATE } from '../utils';
   import { onMount, setContext, tick } from 'svelte';
   import { DateTime } from 'luxon';
-  import { redirect } from '@roxi/routify';
+  import { goto, activeRoute } from '@roxi/routify';
 
   import { Wave } from 'svelte-loading-spinners';
   const queryClient = new QueryClient({
@@ -67,7 +67,8 @@
   };
   const getAccessToken = () => {
     try {
-      const { error, access_token, refresh_token } = getHashParams();
+      const { error, access_token, refresh_token } =
+        $activeRoute.queryParams;
 
       if (error) {
         console.error(error);
@@ -89,7 +90,7 @@
         localAccessToken === 'undefined' &&
         typeof access_token === 'undefined'
       ) {
-        $redirect('/login');
+        $goto('/login');
       }
       // If there is no REFRESH token in local storage, set it as `refresh_token` from params
       if (!localRefreshToken || localRefreshToken === 'undefined') {
@@ -103,7 +104,7 @@
       }
       return localAccessToken;
     } catch (e) {
-      $redirect('/login');
+      $goto('/login');
     }
   };
   const refreshAccessToken = async () => {

@@ -36,7 +36,7 @@
   />
   <NavigationItem
     name="Log out"
-    destination={`login`}
+    destination="./login"
     icon={bxLogOut}
     on:click={handleLogOutClick}
   />
