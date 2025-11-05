@@ -42,7 +42,7 @@
   />
 </Navigation>
 <SpotifyApi>
-  <main slot="content">
+  <main>
     <slot />
   </main>
 </SpotifyApi>

@@ -2,8 +2,8 @@
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import { getContext } from 'svelte';
   import { useQueries } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
-  import { apiEndpointsNames } from '../components/Spotify-api.svelte';
+  import Wave from '../components/Wave.svelte';
+  import { apiEndpointsNames } from '../services/spotify-api';
   import UserInfo from '../components/UserInfo.svelte';
   import PageSection from '../components/PageSection.svelte';
   import { isEmptyObject } from '../utils';
@@ -44,14 +44,15 @@
       queryFn: fetchUserPlaylists,
     },
   ]);
-  $: queryIsLoading = $queryResult.some((query) => query.isLoading);
-  $: queryAsError = $queryResult.some(
+
+  let queryIsLoading = $derived($queryResult.some((query) => query.isLoading));
+  let queryAsError = $derived($queryResult.some(
     (query) =>
       query.isError ||
       (typeof query.data !== 'undefined' &&
         query.data.hasOwnProperty('error')),
-  );
-  $: collectError = queryAsError
+  ));
+  let collectError = $derived(queryAsError
     ? $queryResult
         .filter(
           (query) =>
@@ -60,15 +61,15 @@
               query.data.hasOwnProperty('error')),
         )
         .map((query) => query.data)
-    : [];
-  $: queryIsEmpty = $queryResult.some((query) =>
+    : []);
+  let queryIsEmpty = $derived($queryResult.some((query) =>
     isEmptyObject(query.data),
-  );
-  $: userInfo = $queryResult[0].data;
-  $: topTracks = $queryResult[1].data;
-  $: topArtists = $queryResult[2].data;
-  $: followedArtists = $queryResult[3].data;
-  $: userPlaylists = $queryResult[4].data;
+  ));
+  let userInfo = $derived($queryResult[0].data);
+  let topTracks = $derived($queryResult[1].data);
+  let topArtists = $derived($queryResult[2].data);
+  let followedArtists = $derived($queryResult[3].data);
+  let userPlaylists = $derived($queryResult[4].data);
 </script>
 
 <svelte:head>

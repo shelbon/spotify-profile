@@ -3,7 +3,7 @@ import routify from '@roxi/routify/vite-plugin'
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [svelte({ extensions: ['.svelte', '.svg'] }), routify({/* config */ })],
+  plugins: [svelte(), routify({/* config */ })],
 
   optimizeDeps: {
     exclude: [

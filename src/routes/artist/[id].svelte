@@ -1,11 +1,8 @@
 <script>
   import { getContext } from 'svelte';
-  import {
-    useQueries,
-    useQueryClient,
-  } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
-  import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
+  import { createQueries } from '@tanstack/svelte-query';
+  import Wave from '../../components/Wave.svelte';
+  import { apiEndpointsNames } from '../../services/spotify-api';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
 
@@ -26,59 +23,69 @@
   const { fetchArtistRelatedArtists } = getContext(
     apiEndpointsNames.artistRelatedArtists,
   );
-  $: title = 'Artist page';
+  let title = $state('Artist page');
 
-  $: id = $params.id;
+  let id = $state($params.id);
 
-  $: artistQueryResult = useQueries([
-    {
-      queryKey: [apiEndpointsNames.artist, id],
-      queryFn: () => fetchArtist(id),
-    },
-    {
-      queryKey: [apiEndpointsNames.artistTopTracks, id],
-      queryFn: () => fetchArtistTopTracks(id),
-    },
-    {
-      queryKey: [apiEndpointsNames.artistAlbum, id],
-      queryFn: () => fetchArtistAlbum(id),
-    },
-    {
-      queryKey: [apiEndpointsNames.artistRelatedArtists, id],
-      queryFn: () => fetchArtistRelatedArtists(id),
-    },
-  ]);
+  let artistQueryResult = createQueries(() => ({
+    queries: [
+      {
+        queryKey: [apiEndpointsNames.artist, id],
+        queryFn: () => fetchArtist(id),
+      },
+      {
+        queryKey: [apiEndpointsNames.artistTopTracks, id],
+        queryFn: () => fetchArtistTopTracks(id),
+      },
+      {
+        queryKey: [apiEndpointsNames.artistAlbum, id],
+        queryFn: () => fetchArtistAlbum(id),
+      },
+      {
+        queryKey: [apiEndpointsNames.artistRelatedArtists, id],
+        queryFn: () => fetchArtistRelatedArtists(id),
+      },
+    ],
+  }));
 
-  $: queryIsLoading = $artistQueryResult.some(
-    (query) => query.isLoading || query.isFetching,
+  let queryIsLoading = $derived(
+    artistQueryResult.some(
+      (query) => query.isLoading || query.isFetching,
+    ),
   );
-  $: queryAsError = $artistQueryResult.some(
-    (query) =>
-      query.isError ||
-      (typeof query.data !== 'undefined' &&
-        query.data.hasOwnProperty('error')),
+  let queryAsError = $derived(
+    artistQueryResult.some(
+      (query) =>
+        query.isError ||
+        (typeof query.data !== 'undefined' &&
+          query.data.hasOwnProperty('error')),
+    ),
   );
 
-  $: collectError = queryAsError
-    ? $artistQueryResult
-        .filter(
-          (query) =>
-            query.isError ||
-            (typeof query.data !== 'undefined' &&
-              query.data.hasOwnProperty('error')),
-        )
-        .map((query) => query.data)
-    : [];
-  $: queryIsEmpty = $artistQueryResult.some((query) =>
-    isEmptyObject(query.data),
+  let collectError = $derived(
+    queryAsError
+      ? artistQueryResult
+          .filter(
+            (query) =>
+              query.isError ||
+              (typeof query.data !== 'undefined' &&
+                query.data.hasOwnProperty('error')),
+          )
+          .map((query) => query.data)
+      : [],
   );
-  $: artistInfo = $artistQueryResult[0].data;
-  $: artistTopTracks = $artistQueryResult[1].data;
-  $: artistAlbum = $artistQueryResult[2].data;
-  $: artistRelatedArtists = $artistQueryResult[3].data;
-  $: if (!isEmptyObject(artistInfo)) {
-    title = `artist:${artistInfo.name}`;
-  }
+  let queryIsEmpty = $derived(
+    artistQueryResult.some((query) => isEmptyObject(query.data)),
+  );
+  let artistInfo = $derived(artistQueryResult[0].data);
+  let artistTopTracks = $derived(artistQueryResult[1].data);
+  let artistAlbum = $derived(artistQueryResult[2].data);
+  let artistRelatedArtists = $derived(artistQueryResult[3].data);
+  $effect(() => {
+    if (!isEmptyObject(artistInfo)) {
+      title = `artist:${artistInfo.name}`;
+    }
+  });
 </script>
 
 <svelte:head><title>{title}</title></svelte:head>

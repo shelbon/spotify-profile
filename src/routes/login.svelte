@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  import EnjoyableTrack from '../assets/enjoyable_track.svg';
+  import enjoyableTrackSvg from '../assets/enjoyable_track.svg?raw';
 
   onMount(() => {
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -18,8 +18,7 @@
   });
 </script>
 
-<!-- routify:options name="login" -->
-<!-- routify:options reset=true -->
+<!-- routify:meta reset -->
 <svelte:head>
   <title>Log in</title>
 </svelte:head>
@@ -36,7 +35,9 @@
     >
   </div>
 
-  <EnjoyableTrack />
+  <div class="svg-container">
+    {@html enjoyableTrackSvg}
+  </div>
 </main>
 
 <style>
@@ -82,9 +83,13 @@
   .btn-log-in > p {
     font-size: 1.6rem;
   }
-  .container :global(svg) {
+  .svg-container {
     flex: 1;
     width: 100%;
+  }
+  .svg-container :global(svg) {
+    width: 100%;
+    height: 100%;
   }
 
   @media (min-width: 1024px) {
@@ -119,7 +124,7 @@
       line-height: 115%;
       color: white;
     }
-    .container :global(svg) {
+    .svg-container :global(svg) {
       margin: 0;
       height: 100vh;
       height: calc(var(--vh, 1vh) * 100);

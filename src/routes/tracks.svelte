@@ -1,8 +1,8 @@
 <script>
   import { getContext } from 'svelte';
   import { useQuery } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
-  import { apiEndpointsNames } from '../components/Spotify-api.svelte';
+  import Wave from '../components/Wave.svelte';
+  import { apiEndpointsNames } from '../services/spotify-api';
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import PageSection from '../components/PageSection.svelte';
   import CardGrid from '../components/CardGrid.svelte';

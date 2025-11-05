@@ -1,9 +1,9 @@
 <script>
   import { getContext } from 'svelte';
   import { useQuery } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
+  import Wave from '../../components/Wave.svelte';
   import { params } from '@roxi/routify';
-  import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
+  import { apiEndpointsNames } from '../../services/spotify-api';
   import TrackList from '../../components/TrackList.svelte';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';

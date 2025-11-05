@@ -1,0 +1,15 @@
+export const apiEndpointsNames = {
+  userInfo: 'user info',
+  userTopArtists: ' user top artists',
+  userTopTracks: ' user top tracks',
+  userPlaylists: 'user playlists',
+  userFollowedArtists: 'user followed artists',
+  artist: 'Artist',
+  artistTopTracks: 'Artist top track',
+  artistAlbum: 'Artist album',
+  artistRelatedArtists: 'Artist related artists',
+  album: 'Album',
+  playlist: 'Playlist',
+  trackFeature: 'Track feature',
+  track: 'track',
+} as const;

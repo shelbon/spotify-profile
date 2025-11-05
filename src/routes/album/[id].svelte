@@ -1,44 +1,41 @@
 <script>
   import { getContext } from 'svelte';
-  import { useQuery } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
+  import { createQuery } from '@tanstack/svelte-query';
+  import Wave from '../../components/Wave.svelte';
   import { params } from '@roxi/routify';
-  import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
+  import { apiEndpointsNames } from '../../services/spotify-api';
   import TrackList from '../../components/TrackList.svelte';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
   import CardInfo from '../../components/CardInfo.svelte';
   let id = $params.id;
   const { fetchAlbum } = getContext(apiEndpointsNames.album);
-  const albumQuery = useQuery(
-    [apiEndpointsNames.album, id],
-    () => fetchAlbum(id),
-    {
-      enabled: !!id,
-    },
-  );
+  const albumQuery = createQuery(() => ({
+    queryKey: [apiEndpointsNames.album, id],
+    queryFn: () => fetchAlbum(id),
+  }));
 </script>
 
-{#if $albumQuery.isLoading}
+{#if albumQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $albumQuery.error || (typeof $albumQuery.data !== 'undefined' && 'error' in $albumQuery.data)}
+{:else if albumQuery.error || (typeof albumQuery.data !== 'undefined' && 'error' in albumQuery.data)}
   <QueryErrorMessage
     data={new Set().add({
-      error: $albumQuery.error || $albumQuery.data.error,
+      error: albumQuery.error || albumQuery.data.error,
     })}
   />
-{:else if isEmptyObject($albumQuery.data)}
+{:else if isEmptyObject(albumQuery.data)}
   <p>album is empty</p>
 {:else}
   <div class="album">
     <CardInfo
-      image={$albumQuery.data.images[1]}
-      name={$albumQuery.data.name}
-      total={$albumQuery.data.total_tracks}
-      creators={$albumQuery.data.artists}
-      release_date={$albumQuery.data.release_date.substring(0, 4)}
+      image={albumQuery.data.images[1]}
+      name={albumQuery.data.name}
+      total={albumQuery.data.total_tracks}
+      creators={albumQuery.data.artists}
+      release_date={albumQuery.data.release_date.substring(0, 4)}
     />
-    <TrackList data={$albumQuery.data.tracks.items} />
+    <TrackList data={albumQuery.data.tracks.items} />
   </div>
 {/if}
 
