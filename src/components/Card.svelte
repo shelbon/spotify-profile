@@ -12,7 +12,7 @@
 </script>
 
 <Card>
-  <a href={$url(`/${baseUrlLink}/${id}`)}>
+  <a href={`/${baseUrlLink}/${id}`}>
     <img class="image" src={image.url} alt={`${baseUrlLink} card`} />
     <p class="name">{name}</p>
     {#if typeof artists !== 'undefined' && artists.length > 0}

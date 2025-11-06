@@ -36,13 +36,13 @@
   />
   <NavigationItem
     name="Log out"
-    destination={`login`}
+    destination="./login"
     icon={bxLogOut}
     on:click={handleLogOutClick}
   />
 </Navigation>
 <SpotifyApi>
-  <main slot="content">
+  <main>
     <slot />
   </main>
 </SpotifyApi>

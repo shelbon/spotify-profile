@@ -2,56 +2,50 @@
  -->
 <script>
   import { getContext } from 'svelte';
-  import { useQuery } from '@sveltestack/svelte-query';
-  import { Wave } from 'svelte-loading-spinners';
+  import Wave from '../../components/Wave.svelte';
   import { params } from '@roxi/routify';
-  import { apiEndpointsNames } from '../../components/Spotify-api.svelte';
+  import { apiEndpointsNames } from '../../services/spotify-api';
   import Feature from '../../components/Feature.svelte';
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
   import CardInfo from '../../components/CardInfo.svelte';
+  import { createQuery } from '@tanstack/svelte-query';
 
-  let id = $params.id;
+  let id = $derived($params.id);
   const { fetchTrackFeature } = getContext(
     apiEndpointsNames.trackFeature,
   );
   const { fetchTrack } = getContext(apiEndpointsNames.track);
-  const trackFeatureQuery = useQuery(
-    [apiEndpointsNames.trackFeature, id],
-    () => fetchTrackFeature(id),
-    {
-      enabled: !!id,
-    },
-  );
-  const trackQuery = useQuery(
-    [apiEndpointsNames.track, id],
-    () => fetchTrack(id),
-    {
-      enabled: !!id,
-    },
-  );
+  const trackFeatureQuery = createQuery(() => ({
+    queryKey: [apiEndpointsNames.trackFeature, id],
+    queryFn: () => fetchTrackFeature(id),
+  }));
+  const trackQuery = createQuery(() => ({
+    queryKey: [apiEndpointsNames.track, id],
+    queryFn: () => fetchTrack(id),
+  }));
 </script>
 
-{#if $trackFeatureQuery.isLoading || $trackQuery.isLoading}
+{#if trackFeatureQuery.isLoading || trackQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $trackFeatureQuery.error || (typeof $trackFeatureQuery.data != 'undefined' && 'error' in $trackFeatureQuery.data) || $trackQuery.error || (typeof $trackQuery.data != 'undefined' && 'error' in $trackQuery.data)}
+{:else if trackFeatureQuery.error || (typeof trackFeatureQuery.data != 'undefined' && 'error' in trackFeatureQuery.data) || trackQuery.error || (typeof trackQuery.data != 'undefined' && 'error' in trackQuery.data)}
   <QueryErrorMessage
     data={new Set().add(
-      $trackFeatureQuery.error || $trackFeatureQuery.data.error,
+      trackFeatureQuery.error || trackFeatureQuery.data.error,
     )}
   />
-{:else if isEmptyObject($trackFeatureQuery.data) || isEmptyObject($trackQuery.data)}
+{:else if isEmptyObject(trackFeatureQuery.data) || isEmptyObject(trackQuery.data)}
   <p>track data not found ,reload the page or reconnect</p>
 {:else}
   <CardInfo
-    image={$trackQuery.data.album.images[1]}
-    name={$trackQuery.data.name}
-    creators={$trackQuery.data.artists}
-    release_date={$trackQuery.data.album.release_date}
+    image={trackQuery.data.album.images[1]}
+    name={trackQuery.data.name}
+    creators={trackQuery.data.artists}
+    release_date={trackQuery.data.album.release_date}
   />
   <div class="track-feature-container">
     <h3 style="align-self: center;">Track Feature</h3>
-    <Feature data={$trackFeatureQuery.data} />
+    <Feature data={trackFeatureQuery.data} />
     <details class="features-description">
       <summary>Features Description</summary>
       <h3>Danceability</h3>
