@@ -5,7 +5,7 @@
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "dev": "vite --host 0.0.0.0",
-    "build": "routify -b && vite build ",
+    "build": "vite build ",
     "serve": "vite preview"
   },
   "type": "module",
