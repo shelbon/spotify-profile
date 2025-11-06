@@ -1,7 +1,6 @@
 <script>
   import QueryErrorMessage from '../components/QueryErrorMessage.svelte';
   import { getContext } from 'svelte';
-  import { useQueries } from '@sveltestack/svelte-query';
   import Wave from '../components/Wave.svelte';
   import { apiEndpointsNames } from '../services/spotify-api';
   import UserInfo from '../components/UserInfo.svelte';
@@ -9,6 +8,7 @@
   import { isEmptyObject } from '../utils';
   import CardList from '../components/CardList.svelte';
   import Filter from '../components/Filter.svelte';
+  import { createQueries } from '@tanstack/svelte-query';
 
   const { fetchUserInfo } = getContext(apiEndpointsNames.userInfo);
 
@@ -25,51 +25,62 @@
   const { fetchUserFollowedArtists } = getContext(
     apiEndpointsNames.userFollowedArtists,
   );
-  const queryResult = useQueries([
-    { queryKey: apiEndpointsNames.userInfo, queryFn: fetchUserInfo },
-    {
-      queryKey: apiEndpointsNames.userTopTracks,
-      queryFn: fetchUserTopTracks,
-    },
-    {
-      queryKey: apiEndpointsNames.userTopArtists,
-      queryFn: fetchUserTopArtists,
-    },
-    {
-      queryKey: apiEndpointsNames.userFollowedArtists,
-      queryFn: fetchUserFollowedArtists,
-    },
-    {
-      queryKey: apiEndpointsNames.userPlaylists,
-      queryFn: fetchUserPlaylists,
-    },
-  ]);
+  const queryResult = createQueries(() => ({
+    queries: [
+      {
+        queryKey: [apiEndpointsNames.userInfo],
+        queryFn: fetchUserInfo,
+      },
+      {
+        queryKey: [apiEndpointsNames.userTopTracks],
+        queryFn: fetchUserTopTracks,
+      },
+      {
+        queryKey: [apiEndpointsNames.userTopArtists],
+        queryFn: fetchUserTopArtists,
+      },
+      {
+        queryKey: [apiEndpointsNames.userFollowedArtists],
+        queryFn: fetchUserFollowedArtists,
+      },
+      {
+        queryKey: [apiEndpointsNames.userPlaylists],
+        queryFn: fetchUserPlaylists,
+      },
+    ],
+  }));
 
-  let queryIsLoading = $derived($queryResult.some((query) => query.isLoading));
-  let queryAsError = $derived($queryResult.some(
-    (query) =>
-      query.isError ||
-      (typeof query.data !== 'undefined' &&
-        query.data.hasOwnProperty('error')),
-  ));
-  let collectError = $derived(queryAsError
-    ? $queryResult
-        .filter(
-          (query) =>
-            query.isError ||
-            (typeof query.data !== 'undefined' &&
-              query.data.hasOwnProperty('error')),
-        )
-        .map((query) => query.data)
-    : []);
-  let queryIsEmpty = $derived($queryResult.some((query) =>
-    isEmptyObject(query.data),
-  ));
-  let userInfo = $derived($queryResult[0].data);
-  let topTracks = $derived($queryResult[1].data);
-  let topArtists = $derived($queryResult[2].data);
-  let followedArtists = $derived($queryResult[3].data);
-  let userPlaylists = $derived($queryResult[4].data);
+  let queryIsLoading = $derived(
+    queryResult.some((query) => query.isLoading),
+  );
+  let queryAsError = $derived(
+    queryResult.some(
+      (query) =>
+        query.isError ||
+        (typeof query.data !== 'undefined' &&
+          query.data.hasOwnProperty('error')),
+    ),
+  );
+  let collectError = $derived(
+    queryAsError
+      ? queryResult
+          .filter(
+            (query) =>
+              query.isError ||
+              (typeof query.data !== 'undefined' &&
+                query.data.hasOwnProperty('error')),
+          )
+          .map((query) => query.data)
+      : [],
+  );
+  let queryIsEmpty = $derived(
+    queryResult.some((query) => isEmptyObject(query.data)),
+  );
+  let userInfo = $derived(queryResult[0].data);
+  let topTracks = $derived(queryResult[1].data);
+  let topArtists = $derived(queryResult[2].data);
+  let followedArtists = $derived(queryResult[3].data);
+  let userPlaylists = $derived(queryResult[4].data);
 </script>
 
 <svelte:head>
@@ -93,12 +104,12 @@
     />
     <PageSection title="Top Artists">
       <Filter let:filteredData items={topArtists.items} limit={5}>
-        <CardList baseUrlLink="artist" data={filteredData} />
+        <CardList baseUrlLink="artists" data={filteredData} />
       </Filter>
     </PageSection>
     <PageSection title="Top Tracks">
       <Filter let:filteredData items={topTracks.items} limit={5}>
-        <CardList baseUrlLink="track" data={filteredData} />
+        <CardList baseUrlLink="tracks" data={filteredData} />
       </Filter>
     </PageSection>
   </div>

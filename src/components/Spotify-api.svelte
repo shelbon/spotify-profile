@@ -2,7 +2,7 @@
   import {
     QueryClient,
     QueryClientProvider,
-  } from '@sveltestack/svelte-query';
+  } from '@tanstack/svelte-query';
   import { onMount, setContext } from 'svelte';
   import { apiEndpointsNames } from '../services/spotify-api';
   import { activeRoute, goto } from '@roxi/routify';

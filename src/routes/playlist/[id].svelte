@@ -1,6 +1,6 @@
 <script>
   import { getContext } from 'svelte';
-  import { useQuery } from '@sveltestack/svelte-query';
+  import { createQuery } from '@tanstack/svelte-query';
   import Wave from '../../components/Wave.svelte';
   import { params } from '@roxi/routify';
   import { apiEndpointsNames } from '../../services/spotify-api';
@@ -8,36 +8,34 @@
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
   import CardInfo from '../../components/CardInfo.svelte';
-  let id = $params.id;
+  let id = $derived($params.id);
   const { fetchPlaylist } = getContext(apiEndpointsNames.playlist);
-  const playlistQuery = useQuery(
-    [apiEndpointsNames.playlist, id],
-    () => fetchPlaylist(id),
-    {
-      enabled: !!id,
-    },
-  );
+  const playlistQuery = createQuery(() => ({
+    queryKey: [apiEndpointsNames.playlist, id],
+    queryFn: () => fetchPlaylist(id),
+    enabled: !!id,
+  }));
 </script>
 
-{#if $playlistQuery.isLoading}
+{#if playlistQuery.isLoading}
   <Wave size="60" color="#1db954" unit="px" duration="1s" />
-{:else if $playlistQuery.error || (typeof $playlistQuery.data !== 'undefined' && 'error' in $playlistQuery.data)}
+{:else if playlistQuery.error || (typeof playlistQuery.data !== 'undefined' && 'error' in playlistQuery.data)}
   <QueryErrorMessage
     data={new Set().add({
-      error: $playlistQuery.error || $playlistQuery.data.error,
+      error: playlistQuery.error || playlistQuery.data.error,
     })}
   />
-{:else if isEmptyObject($playlistQuery.data)}
+{:else if isEmptyObject(playlistQuery.data)}
   <p>playlist data not found ,reload the page or reconnect</p>
 {:else}
   <div class="album">
     <CardInfo
-      image={$playlistQuery.data.images[0]}
-      name={$playlistQuery.data.name}
-      total={$playlistQuery.data.tracks.total}
-      creators={[$playlistQuery.data.owner]}
+      image={playlistQuery.data.images[0]}
+      name={playlistQuery.data.name}
+      total={playlistQuery.data.tracks.total}
+      creators={[playlistQuery.data.owner]}
     />
-    <TrackList data={$playlistQuery.data.tracks.items} />
+    <TrackList data={playlistQuery.data.tracks.items} />
   </div>
 {/if}
 

@@ -8,7 +8,7 @@
   import QueryErrorMessage from '../../components/QueryErrorMessage.svelte';
   import { isEmptyObject } from '../../utils';
   import CardInfo from '../../components/CardInfo.svelte';
-  let id = $params.id;
+  let id = $derived($params.id);
   const { fetchAlbum } = getContext(apiEndpointsNames.album);
   const albumQuery = createQuery(() => ({
     queryKey: [apiEndpointsNames.album, id],

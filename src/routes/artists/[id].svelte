@@ -25,7 +25,7 @@
   );
   let title = $state('Artist page');
 
-  let id = $state($params.id);
+  let id = $derived($params.id);
 
   let artistQueryResult = createQueries(() => ({
     queries: [
@@ -104,12 +104,12 @@
       items={artistTopTracks.tracks}
       limit={10}
     >
-      <CardGrid baseUrlLink="track" data={filteredData} />
+      <CardGrid baseUrlLink="tracks" data={filteredData} />
     </Filter>
   </PageSection>
   <PageSection title="Album">
     <Filter let:filteredData items={artistAlbum.items} limit={5}>
-      <CardList baseUrlLink="album" data={filteredData} />
+      <CardList baseUrlLink="albums" data={filteredData} />
     </Filter>
   </PageSection>
   <PageSection title="Related Artists">
@@ -118,7 +118,7 @@
       items={artistRelatedArtists.artists}
       limit={5}
     >
-      <CardList baseUrlLink="artist" data={filteredData} />
+      <CardList baseUrlLink="artists" data={filteredData} />
     </Filter>
   </PageSection>
 {/if}

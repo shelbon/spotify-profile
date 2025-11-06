@@ -3,11 +3,13 @@ import routify from '@roxi/routify/vite-plugin'
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [svelte(), routify({/* config */ })],
+  plugins: [
+    svelte({ extensions: ['.svelte', '.svg'] }),
+    routify({/* config */ })],
 
   optimizeDeps: {
     exclude: [
-      '@sveltestack/svelte-query',
+      '@tanstack/svelte-query',
       'svelte-loading-spinners',
       '@roxi/routify',
       '@iconify-icons/bx',
